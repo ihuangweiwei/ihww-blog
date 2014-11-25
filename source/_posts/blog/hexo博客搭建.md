@@ -13,7 +13,7 @@ date: 2014-11-25 13:18:02
 <!-- more -->
 ##二、hexo博客创建
 
->hexo init ihww-blog
+    hexo init ihww-blog
 
 ##三、主题安装
 
@@ -21,7 +21,7 @@ date: 2014-11-25 13:18:02
 
 在theme目录下
 
->git clone https://github.com/hexojs/hexo-theme-light.git
+    git clone https://github.com/hexojs/hexo-theme-light.git
 
 修改`_config.yml` 下的theme参数修改为 `hexo-theme-light`
 
