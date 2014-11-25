@@ -45,3 +45,8 @@ date: 2014-11-25 13:18:02
 1.  dns服务CNAME到github提供的域名
 2.  在source目录下创建CANME文件，填写自己的域名`blog.ihww.cn`
 
+
+##六、推荐站点
+
+<http://ijiaober.github.io/categories/hexo/>
+
