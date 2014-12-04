@@ -1,8 +1,8 @@
 title: Grunt学习笔记
 date: 2014-12-04 09:39:20
 tags:
-    -前端构建
-    -nodejs
+    - 前端构建
+    - nodejs
 ---
 
 ##一、安装grunt
