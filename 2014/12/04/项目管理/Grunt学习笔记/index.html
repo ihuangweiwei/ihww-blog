@@ -3,13 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2014/12 | ihww&#39;s Blog</title>
+  <title>Grunt学习笔记 | ihww&#39;s Blog</title>
   <meta name="author" content="ihuangweiwei">
+  
+  <meta name="description" content="一、安装grunt
+npm install -g grunt-cli
+安装grunt-cli并不等于安装了Grunt，允许你在同一个系统上同时安装多个版本的 Grunt
+二、task配置实例
+插件安装
+npm install grunt-contrib-uglify --save-dev
+配置实例
+">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Grunt学习笔记"/>
   <meta property="og:site_name" content="ihww&#39;s Blog"/>
 
   
@@ -46,12 +55,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2014/12</h2>
-
-
-  
-    <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
@@ -61,7 +65,7 @@
       
       
   
-    <h1 class="title"><a href="/2014/12/04/项目管理/Grunt学习笔记/">Grunt学习笔记</a></h1>
+    <h1 class="title">Grunt学习笔记</h1>
   
 
     </header>
@@ -84,6 +88,29 @@
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/-前端构建-nodejs/">-前端构建 -nodejs</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
       
       <div class="clearfix"></div>
     </footer>
@@ -91,80 +118,26 @@
 </article>
 
 
+<section id="comment">
+  <h1 class="title">留言</h1>
 
   
-    <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-12-03T06:22:52.000Z"><a href="/2014/12/03/项目管理/Git资料/">12月 3 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/12/03/项目管理/Git资料/">Git资料</a></h1>
-  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
 
-    </header>
-    <div class="entry">
+<div class="fb-comments" data-href="http://blog.ihww.cn/2014/12/04/项目管理/Grunt学习笔记/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
-        <h2 id="一、推荐学习网站">一、推荐学习网站</h2>
-<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰 Git教程</a><br><a href="http://git.oschina.net/progit/" target="_blank" rel="external">Pro Git（中文版）</a></p>
-<h2 id="二、日常git命令总结">二、日常git命令总结</h2>
-<p><strong>回退版本</strong></p>
-<pre><code>git log <span class="comment">--pretty=oneline</span>
-git <span class="operator"><span class="keyword">reset</span> <span class="comment">--hard 3628164</span></span>
-</code></pre><p><strong>撤销修改</strong></p>
-<pre><code><span class="comment">git</span> <span class="comment">checkout</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">readme</span><span class="string">.</span><span class="comment">txt</span>
-</code></pre><p><strong>添加远程仓库</strong></p>
-<pre><code>git remote <span class="keyword">add</span> origin git_url
-git <span class="keyword">push</span> -u origin master
-</code></pre><p><strong>分支管理</strong></p>
-<pre><code>git checkout -b dev
-git merge dev
-git branch <span class="operator">-d</span> dev
-</code></pre><p><strong>临时Bug处理</strong></p>
-<pre><code>git stash
-git checkout master
-git checkout <span class="attribute">-b</span> issue<span class="subst">-</span><span class="number">101</span>
-<span class="attribute">...</span><span class="built_in">.</span>处理<span class="attribute">...</span><span class="built_in">.</span>
-git checkout master
-git merge <span class="subst">--</span>no<span class="attribute">-ff</span> <span class="attribute">-m</span> <span class="string">"merged bug fix 101"</span> issue<span class="subst">-</span><span class="number">101</span>
-git branch <span class="attribute">-d</span> issue<span class="subst">-</span><span class="number">101</span>
-git checkout dev
-git stash <span class="built_in">list</span>
-git stash pop  <span class="comment">//git stash apply stash@{0}</span>
-</code></pre><p><strong>标签处理</strong></p>
-<pre><code>git tag v1.<span class="number">0</span>
-git tag -d v<span class="number">0</span>.<span class="number">1</span>
-git push origin v1.<span class="number">0</span>
-删除远程标签
-先删本地
-git tag -d v1.<span class="number">0</span>
-git push origin <span class="symbol">:refs/tags/v1</span>.<span class="number">0</span>
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
   
+</section>
 
-  <nav id="pagination">
-  
-  
-  <div class="clearfix"></div>
-</nav>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
