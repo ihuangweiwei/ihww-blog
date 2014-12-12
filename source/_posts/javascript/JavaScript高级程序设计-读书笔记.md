@@ -29,6 +29,8 @@ DOM2级的模块：DOM试图，DOM事件（事件和事件处理的接口），D
 
 SVG、MathML、SMIL
 
+<!-- more -->
+
 ####1.2.3   浏览器对象模型（BOM）（提供与浏览器交互的方法和接口）
 
 一些扩展：
@@ -51,7 +53,6 @@ SVG、MathML、SMIL
 
     <script type="text/javascript" async src="example1.js"></script>
 
-
 ###2.4  <noscript>元素
 
 符合以下情况，元素内内容会显示
@@ -61,6 +62,40 @@ SVG、MathML、SMIL
 
 ##3 基本概念
 
+###3.1  语法
+
+####3.1.1   区分大小写
+
+####3.1.2   标示符
+
+标示符指的是变量、函数、属性的名字，函数的参数。
+
++   第一个字符必须是字母、_或$
++   其它字符可以是字母、下划线、美元符号或数字
+
+####3.1.4   严格模式
+
+    "use strict"
+
+是一个编译指示（pragma），告诉支持的JavaScript引擎切换到严格模式。`函数内部也可以使用`
+
+###3.4  数据类型
+
+ECMAScript中有5种简单数据类型：Undefined、Null、Boolean、Number和String。一种复杂数据类型：Object（本质上是由一组无序的明值对组成）。
+
+####3.4.1   typeof操作符
+
+返回某个字符串
+
+####3.4.2   Undefined类型
+
+Undefined类型只有**一个值**，即特殊的**undefined**
+
+    undefined==undefined    返回true
+
+####3.4.3   Null类型
+
+Null类型是第二个只有一个值的数据类型，是null。null值表示一个空对象指针，所以typeof检测null值会返回"object"的原因。
 
 
 
