@@ -3,24 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Git资料 | ihww&#39;s Blog</title>
+  <title>Redmine2.5.2安装简要笔记 | ihww&#39;s Blog</title>
   <meta name="author" content="ihuangweiwei">
   
-  <meta name="description" content="一、推荐学习网站
-廖雪峰 Git教程Pro Git（中文版）
-二、日常git命令总结
-回退版本
-git log --pretty=oneline
-git reset --hard 3628164
-撤销修改
-git checkout -- readme.txt
-添加远程仓库
-git remote ad">
+  <meta name="description" content="一、安装ruby
+安装脚本
+#/bin/bash
+curl -L get.rvm.io | bash -s stable
+source ~/.bashrc
+source ~/.bash_profile
+source /usr/local/rvm/scripts/rvm
+sed -i &#39;s!ftp.r">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Git资料"/>
+  <meta property="og:title" content="Redmine2.5.2安装简要笔记"/>
   <meta property="og:site_name" content="ihww&#39;s Blog"/>
 
   
@@ -63,50 +61,43 @@ git remote ad">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-12-03T06:22:52.000Z"><a href="/2014/12/03/项目管理/Git资料/">12月 3 2014</a></time>
+        <time datetime="2014-08-08T06:22:52.000Z"><a href="/2014/08/08/ruby/Redmine2.5.2安装简要笔记/">8月 8 2014</a></time>
       
       
   
-    <h1 class="title">Git资料</h1>
+    <h1 class="title">Redmine2.5.2安装简要笔记</h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="一、推荐学习网站">一、推荐学习网站</h2>
-<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰 Git教程</a><br><a href="http://git.oschina.net/progit/" target="_blank" rel="external">Pro Git（中文版）</a></p>
-<h2 id="二、日常git命令总结">二、日常git命令总结</h2>
-<p><strong>回退版本</strong></p>
-<pre><code>git log <span class="comment">--pretty=oneline</span>
-git <span class="operator"><span class="keyword">reset</span> <span class="comment">--hard 3628164</span></span>
-</code></pre><p><strong>撤销修改</strong></p>
-<pre><code><span class="comment">git</span> <span class="comment">checkout</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">readme</span><span class="string">.</span><span class="comment">txt</span>
-</code></pre><p><strong>添加远程仓库</strong></p>
-<pre><code>git remote <span class="keyword">add</span> origin git_url
-git <span class="keyword">push</span> -u origin master
-</code></pre><p><strong>分支管理</strong></p>
-<pre><code>git checkout -b dev
-git merge dev
-git branch <span class="operator">-d</span> dev
-</code></pre><p><strong>临时Bug处理</strong></p>
-<pre><code>git stash
-git checkout master
-git checkout <span class="attribute">-b</span> issue<span class="subst">-</span><span class="number">101</span>
-<span class="attribute">...</span><span class="built_in">.</span>处理<span class="attribute">...</span><span class="built_in">.</span>
-git checkout master
-git merge <span class="subst">--</span>no<span class="attribute">-ff</span> <span class="attribute">-m</span> <span class="string">"merged bug fix 101"</span> issue<span class="subst">-</span><span class="number">101</span>
-git branch <span class="attribute">-d</span> issue<span class="subst">-</span><span class="number">101</span>
-git checkout dev
-git stash <span class="built_in">list</span>
-git stash pop  <span class="comment">//git stash apply stash@{0}</span>
-</code></pre><p><strong>标签处理</strong></p>
-<pre><code>git tag v1.<span class="number">0</span>
-git tag -d v<span class="number">0</span>.<span class="number">1</span>
-git push origin v1.<span class="number">0</span>
-删除远程标签
-先删本地
-git tag -d v1.<span class="number">0</span>
-git push origin <span class="symbol">:refs/tags/v1</span>.<span class="number">0</span>
+        <h2 id="一、安装ruby">一、安装ruby</h2>
+<p>安装脚本</p>
+<pre><code><span class="comment">#/bin/bash</span>
+curl -L get.rvm.io | bash <span class="operator">-s</span> stable
+<span class="built_in">source</span> ~/.bashrc
+<span class="built_in">source</span> ~/.bash_profile
+<span class="built_in">source</span> /usr/local/rvm/scripts/rvm
+sed -i <span class="string">'s!ftp.ruby-lang.org/pub/ruby!ruby.taobao.org/mirrors/ruby!'</span> <span class="variable">$rvm_path</span>/config/db
+rvm install <span class="number">1.9</span>.<span class="number">3</span>
+rvm use <span class="number">1.9</span>.<span class="number">3</span> --default
+<span class="keyword">exit</span> <span class="number">0</span>
+</code></pre><h2 id="二、安装redmine">二、安装redmine</h2>
+<h3 id="2-1_下载">2.1  下载</h3>
+<p>略</p>
+<h3 id="2-2_安装">2.2 安装</h3>
+<pre><code><span class="title">tar</span> xvf redmine...tar.gz
+</code></pre><p>配置下config目录下的configuration.yml，database.yml，至于mysql的配置省略</p>
+<pre><code>bundle <span class="operator"><span class="keyword">install</span></span>
+</code></pre><p>完毕后不要忘了执行</p>
+<pre><code>rake <span class="keyword">d</span><span class="variable">b:migrate</span> RAILS_ENV=<span class="string">"production"</span>
+rake generate_session_store
+</code></pre><h3 id="2-3_主题">2.3  主题</h3>
+<pre><code>git clone 到 `<span class="regexp">/usr/</span>local<span class="regexp">/www/</span>redmine-<span class="number">2.5</span>.<span class="number">2</span><span class="regexp">/public/</span>themes`，到后台配置里面选定
+</code></pre><h3 id="2-4_插件">2.4  插件</h3>
+<pre><code>git clone 到 `<span class="regexp">/usr/</span>local<span class="regexp">/www/</span>redmine-<span class="number">2.5</span>.<span class="number">2</span><span class="regexp">/plugins`</span>
+</code></pre><h3 id="2-5_完成执行">2.5  完成执行</h3>
+<pre><code><span class="attribute">rake redmine:plugins:migrate RAILS_ENV</span>=<span class="string">production</span>
 </code></pre>
       
     </div>
@@ -116,7 +107,7 @@ git push origin <span class="symbol">:refs/tags/v1</span>.<span class="number">0
         
   
   <div class="tags">
-    <a href="/tags/Git/">Git</a>
+    <a href="/tags/ruby/">ruby</a>
   </div>
 
         
@@ -159,7 +150,7 @@ git push origin <span class="symbol">:refs/tags/v1</span>.<span class="number">0
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://blog.ihww.cn/2014/12/03/项目管理/Git资料/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://blog.ihww.cn/2014/08/08/ruby/Redmine2.5.2安装简要笔记/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
