@@ -431,7 +431,7 @@ Web浏览器都是将这个全局对象作为window对象的一部分加以实�
 
 ECMAScript中有两种属性：数据属性和访问器属性。
 
-1.数据属性
+**1.数据属性**
 +   [[Configurable]]：表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。
 +   [[Enumerable]]：表示能否通过for-in循环返回属性。
 +   [[Writable]]：表示能否修改属性的值。
@@ -439,7 +439,7 @@ ECMAScript中有两种属性：数据属性和访问器属性。
 
 要修改属性默认的特性，必须使用`Object.defineProperty()`方法
 
-2.访问器属性
+**2.访问器属性**
 +   [[Configurable]]：表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。
 +   [[Enumerable]]：表示能否通过for-in循环返回属性。
 +   [[Get]]：在读取属性时调用的函数。
@@ -474,7 +474,7 @@ ECMAScript中有两种属性：数据属性和访问器属性。
 
 **以这种方式定义的构造函数是定义在Global对象中的**
 
-1.将构造函数当做函数
+**1.将构造函数当做函数**
 
     //当做构造函数使用
     var person1=new Person("ihww",27);
@@ -489,7 +489,7 @@ ECMAScript中有两种属性：数据属性和访问器属性。
     Person.call(o,'bbb',27)
     o.sayName() //bbb
 
-2.构造函数的问题
+**2.构造函数的问题**
 
 每个方法都要在每个实例上重新创建一遍。
 
@@ -514,10 +514,360 @@ ECMAScript中有两种属性：数据属性和访问器属性。
 
 我们创建的每个函数都有一个prototype(原型)属性，该属性是一个指针，指向一个对象（该对象的用途是包含可以由特定类型的所有实例共享的属性和方法）。
 
-1.理解原型对象
+**1.理解原型对象**
 
 所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
 
 Person.prototype.constructor指向Person。而通过这个构造函数，我们还可以继续为原型对象添加其他属性和方法。
 
+创建了自定义的构造函数之后，原型对象默认只会取得constructor属性，其他方法都是从Object继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象（`_proto_`也可以表示为[[Prototype]]）。这个连接存在于实例与构造函数的原型对象之间，不是存在于实例与构造函数之间。
+
+![图6-1](/images/201412/prototype_1.png)
+
+解释：Person.prototype指向原型对象，而Person.prototype.constructor又指回了Person。原型对象中除了包含constructor属性，还有其他属性。Person的实例都包含一个内部属性（_proto_），该属性仅仅指向了Person.prototype;
+
+通过`isPrototypeOf()`方法来确定对象之间是否存在这种关系。
+
+    alert(Person.prototype.isPrototypeOf(person1))；//true
+
+ECMAScript5增加了一个新方法，叫Object.getPrototypeOf(),这个方法返回_proto_的值
+
+    alert(Object.getPrototypeOf(person1) == Person.prototype); //true
+    alert(Object.getPrototypeOf(person1).name); //Nicholas
+
+**每当代码读取某个对象的属性时，都会执行一次搜索，目标是具体给定名字的属性。搜索首先从对象实例本身开始，然后原型对象**
+
+**实例对象能访问原型中的值，但不能修改，如果我们在实例中添加一个原型同名属性，则该属性将会屏蔽原型中的那个属性，但可以使用delete操作符完全删除实例属性**
+
+使用`hasOwnProperty()`方法检测一个属性是否存在实例中，还是存在原型中（Object继承来的）。
+
+**2.原型与in操作符**
+
+两种方式使用in操作符：
+
++   单独使用（通过对象能够访问给定属性时返回true）
++   for-in循环中使用
+
+`hasPrototypeProperty()`检测是否是原型中属性，如果实例覆盖了原型中属性则返回false，取得对象上所有可枚举的实例属性：`Object.keys()`
+
+**3.更简单的原型语法**
+
+    function Person(){
+    }
+    Person.prototype={
+        name:"Nicholas",
+        age:27
+    }
+
+如果在原型中声明`constructor`属性，可能导致该特性的[[Enumerable]]为true，即可枚举。
+
+**4.原型的动态性**
+
+由于原型中查找值的过程是一次搜索，因此原型对象所做修改立即从实例上反映出来。
+
+**5.原生对象的原型**
+
+    alert(typeof Array.prototype.sort);//function
+
+通过原生对象的原型，可以定义新方法。
+
+**6.原型对象的问题**
+
+引用类型值的属性被实例属性可以修改，导致其它实例值修改。
+
+###6.2.4    组合使用构造函数模式和原型模式
+
+构造函数模式用于定义实例属性，而原型模式用于定义方法和共享属性。
+
+###6.2.5    动态原型模式
+
+可以通过检查某个应该存在的方法是否有效，来决定是否需要初始化原型。
+
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+        if(typeof this.sayName!="function"){
+            Person.prototype.sayName=function(){
+                alert(this.name);
+            }
+        }
+    }
+
+*不能使用对象字面量重写原型。如果在已经创建了实例的情况下重写原型，那么就会切断现有实例与新原型之间的联系*
+
+###6.2.6    寄生构造函数模式
+
+寄生（parasitic）构造函数模式，这种模式的基本思想是创建一个函数，该函数的作用仅仅是封装创建对象的代码，然后再返回新创建的对象
+
+    function Person(name, age, job){
+        var o = new Object();
+        o.name = name;
+        o.age = age;
+        o.job = job;
+        o.sayName = function(){
+            alert(this.name);
+        };
+         return o;
+    }
+    var friend = new Person(“Nicholas”, 29, “Software Engineer”);
+    friend.sayName(); //”Nicholas”
+
+这个模式可以在特殊的情况下用来为对象创建构造函数。如果我们想创建一个具有额外方法的特殊数组。
+
+    function SpecialArray(){
+        //create the array
+        var values = new Array();
+        //add the values
+        values.push.apply(values, arguments);
+        //assign the method
+        values.toPipedString = function(){
+            return this.join(“|”);
+        };
+        //return it
+        return values;
+    }
+    var colors = new SpecialArray(“red”, “blue”, “green”);
+    alert(colors.toPipedString()); //”red|blue|green”
+
+
+###6.2.7    稳妥构造函数模式
+
+指的是没有公共属性，而且其方法也不引用this的对象。稳妥对象最适合在一些安全的环境中（禁用this和new），或者在防止数据被其他应用程序（如Mashup程序）改动时使用。
+
+稳妥构造函数遵循与寄生构造函数类似的模式，但有两点不同：
+
++   新创建对象的实例方法不引用this
++   不使用new操作符调用构造函数
+
+改造下前面的Person构造函数：
+
+    function Person(name, age, job){
+        //create the object to return
+        var o = new Object();
+        //optional: define private variables/functions here
+        //attach methods
+        o.sayName = function(){
+            alert(name);
+        };
+        //return the object
+        return o;
+    }
+
+创建的对象，除了使用sayName()方法之外，没有其它办法访问name的值。
+
+##6.3   继承
+
+许多OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。（由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，实现继承主要是依靠原型链来实现的）。
+
+###6.3.1    原型链
+
+基本思想是利用原型让一个引用类型继承另一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。
+
+构造函数、原型和实例的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。
+
+    function SuperType(){
+        this.property = true;
+    }
+    SuperType.prototype.getSuperValue = function(){
+        return this.property;
+    };
+    function SubType(){
+        this.subproperty = false;
+    }
+    //继承了SuperType
+    SubType.prototype = new SuperType();
+    SubType.prototype.getSubValue = function (){
+        return this.subproperty;
+    };
+    var instance = new SubType();
+    alert(instance.getSuperValue()); //true
+
+![6-4](/images/201412/prototype_2.png)
+
+***1.别忘了默认的原型*
+
+![6-5](/images/201412/prototype_2.png)
+
+**2.确认原型和实例的关系**
+
+第一种方式：
+
+    instanceof
+
+第二中方式：
+
+    Object.prototype.isPrototypeOf(instance)
+
+**3.谨慎地定义方法**
+
+子类型有时候需要覆盖超类型的某个方法，或者需要添加超类型中不存在的某个方法。但不管怎样，给原型添加方法的代码一定要放在替换原型的语句之后。
+
+**4.原型链的问题**
+
+还是引用类型的问题，穿件子类型的实例是，不能向超类型的构造函数中传递参数。
+
+####6.3.2   借用构造函数
+
+为了解决引用类型值所带来的问题。在子类型构造函数的内部调用超类型构造函数，
+
+    function SubType(){
+        //继承了SuperType
+        SuperType.call(this); //同样可以传递参数
+    }
+
+//TODO 后续小章节需要补充
+
+##7 函数表达式
+
+###7.2  闭包
+
+闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数。
+
+    function createComparisonFunction(propertyName) {
+        return function(object1, object2){
+            var value1 = object1[propertyName];
+            var value2 = object2[propertyName];
+            if (value1 < value2){
+                return -1;
+            } else if (value1 > value2){
+                return 1;
+            } else {
+                return 0;
+            }
+            };
+    }
+
+*闭包会携带包含它的函数的作用域，因此会比其他函数占用更多的内存*
+
+
+####7.2.1   闭包与变量
+
+闭包只能取得包含函数中任何变量的最后一个值（作用域链的配置机制引起的）。用数组分别保存。
+
+####7.2.2   关于this对象
+
+this对象是在运行时基于函数的执行环境绑定的：在全局函数中，this等于window，而当函数被当做某个对象的方法调用时，this等于那个对象。不过，匿名函数的执行环境具有全局性，因此其this对象通常指向window。
+
+    var name="The window";
+    var object={
+        name:"My Object",
+        getNameFunc:function(){
+            return function(){
+                return this.name;
+            }
+        }
+    };
+    alert(object.getNameFunc()()); //The Window(非严格模式下)
+
+通常做法
+
+    var name="The window";
+    var object={
+        name:"My Object",
+        getNameFunc:function(){
+            var that=this;
+            return function(){
+                return that.name;
+            }
+        }
+    };
+    alert(object.getNameFunc()()); //My Object
+
+*arguments存在同样的问题*
+
+####7.2.3   内存泄漏
+
+闭包中循环引用
+
+###7.3  模仿块级作用域
+
+    (function(){
+        //这里是快级作用域
+    })();
+
+###7.4  私有变量
+
+任何在函数中定义的变量，都可以认为是私有变量，因为不能再函数的外部访问这些变量
+
+    function MyObject(){
+        //私有变量和私有函数
+        var privateVariable=10;
+        function privateFunction(){
+            return false;
+        }
+
+        //特权方法
+        this.publicMethod=function(){
+            privateVariable++;
+            return privateFunction();
+        }
+    }
+
+
+####7.4.1    静态私有变量
+
+    (function(){
+        var name = “”;
+        Person = function(value){
+            name = value;
+        };
+        Person.prototype.getName = function(){
+            return name;
+        };
+        Person.prototype.setName = function (value){
+            name = value;
+        };
+    })();
+    var person1 = new Person(“Nicholas”);
+    alert(person1.getName()); //”Nicholas”
+    person1.setName(“Greg”);
+    alert(person1.getName()); //”Greg”
+    var person2 = new Person(“Michael”);
+    alert(person1.getName()); //”Michael”
+    alert(person2.getName()); //”Michael”
+
+变量name就变成了一个静态的，由所有实例共享的属性
+
+####7.4.2   模块模式
+
+模块模式是为了单例创建私有变量和特权方法。
+
+    var singleton={
+        //私有变量和私有函数
+        var privateVariable=10;
+        function privateFunction(){
+            return false;
+        }
+
+        return {
+            publicProperty:true,
+            publicMethod:function(){
+                privateVariable++;
+                return privateFunction();
+            }
+        }
+    }
+
+在Web应用程序中，经常需要使用一个单例来管理应用程序级的信息。
+
+
+####7.4.3   增强的模块模式
+
+    var singleton={
+        //私有变量和私有函数
+        var privateVariable=10;
+        function privateFunction(){
+            return false;
+        }
+        //创建对象
+        var object=new CustomType();
+        //添加特权/共有属性和方法
+        object.publicProperty=true;
+        object.publicMethod=function(){
+            privateVariable++;
+            return privateFunction();
+        }
+        //返回这个对象
+        return object;
+    }
 
