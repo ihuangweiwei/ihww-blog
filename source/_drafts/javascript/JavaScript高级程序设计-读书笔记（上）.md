@@ -1,4 +1,4 @@
-title: JavaScript高级程序设计-读书笔记
+title: JavaScript高级程序设计-读书笔记（上）
 date: 2014-12-12 16:30:13
 tags:
     - javascript
@@ -454,4 +454,70 @@ ECMAScript中有两种属性：数据属性和访问器属性。
 `Object.getOwnPropertyDescriptor()`方法
 
 ###6.2  创建对象
+
+####6.2.1   工厂模式
+
+工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题（即怎么知道一个对象的类型）
+
+####6.2.2   构造函数模式
+
+    function Person(name,age){
+        this.name=name;
+        this.age=age;
+        sayName=function(){
+            alert(this.name);
+        }
+    }
+    var person1=new Person("ihww",27);
+
+    person1.constructor == Person //true
+
+**以这种方式定义的构造函数是定义在Global对象中的**
+
+1.将构造函数当做函数
+
+    //当做构造函数使用
+    var person1=new Person("ihww",27);
+    person.sayName(); //ihww
+
+    //作为普通函数调用
+    Person("abc",27);
+    window.sayName();//abc
+
+    //在另一个对象的作用域中调用
+    var o=new Object();
+    Person.call(o,'bbb',27)
+    o.sayName() //bbb
+
+2.构造函数的问题
+
+每个方法都要在每个实例上重新创建一遍。
+
+        function Person(name,age){
+            this.name=name;
+            this.age=age;
+            sayName=new Function("alert(this.name)");//与声明函数在逻辑上是等价的
+        }
+
+从这个角度上看构造函数，每个Person实例都包含一个不同的Function实例的本质。（这种方式创建函数，会导致不同的作用域链和标识符解析，但创建Function新实例的机制仍然相同）。
+
+    alert(person1.sayName == person2.sayName) //false   不同实例上的同名函数是不相等的
+
+把sayName提取到全局域，导致一下问题：
+
++   全局域中定义的函数实际只是被某个对象调用，名不副实
++   如果对象需要定义很多方法
+
+解决方法**原型模式**
+
+####6.2.3   原型模式
+
+我们创建的每个函数都有一个prototype(原型)属性，该属性是一个指针，指向一个对象（该对象的用途是包含可以由特定类型的所有实例共享的属性和方法）。
+
+1.理解原型对象
+
+所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。
+
+Person.prototype.constructor指向Person。而通过这个构造函数，我们还可以继续为原型对象添加其他属性和方法。
+
 
