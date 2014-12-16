@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档：2014/8 | ihww&#39;s Blog</title>
+  <title>javascript | ihww&#39;s Blog</title>
   <meta name="author" content="ihuangweiwei">
   
   
@@ -47,7 +47,7 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2014/8</h2>
+<h2 class="archive-title tag">javascript</h2>
 
 
   
@@ -57,48 +57,40 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-08-08T06:22:52.000Z"><a href="/2014/08/08/ruby/Redmine2.5.2安装简要笔记/">8月 8 2014</a></time>
+        <time datetime="2014-12-12T08:30:13.000Z"><a href="/2014/12/12/javascript/JavaScript高级程序设计-读书笔记（上）/">12月 12 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/08/ruby/Redmine2.5.2安装简要笔记/">Redmine2.5.2安装简要笔记</a></h1>
+    <h1 class="title"><a href="/2014/12/12/javascript/JavaScript高级程序设计-读书笔记（上）/">JavaScript高级程序设计-读书笔记（上）</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h2 id="一、安装ruby">一、安装ruby</h2>
-<p>安装脚本</p>
-<pre><code><span class="comment">#/bin/bash</span>
-curl -L get.rvm.io | bash <span class="operator">-s</span> stable
-<span class="built_in">source</span> ~/.bashrc
-<span class="built_in">source</span> ~/.bash_profile
-<span class="built_in">source</span> /usr/local/rvm/scripts/rvm
-sed -i <span class="string">'s!ftp.ruby-lang.org/pub/ruby!ruby.taobao.org/mirrors/ruby!'</span> <span class="variable">$rvm_path</span>/config/db
-rvm install <span class="number">1.9</span>.<span class="number">3</span>
-rvm use <span class="number">1.9</span>.<span class="number">3</span> --default
-<span class="keyword">exit</span> <span class="number">0</span>
-</code></pre><h2 id="二、安装redmine">二、安装redmine</h2>
-<h3 id="2-1_下载">2.1  下载</h3>
-<p>略</p>
-<h3 id="2-2_安装">2.2 安装</h3>
-<pre><code><span class="title">tar</span> xvf redmine...tar.gz
-</code></pre><p>配置下config目录下的configuration.yml，database.yml，至于mysql的配置省略</p>
-<pre><code>bundle <span class="operator"><span class="keyword">install</span></span>
-</code></pre><p>完毕后不要忘了执行</p>
-<pre><code>rake <span class="keyword">d</span><span class="variable">b:migrate</span> RAILS_ENV=<span class="string">"production"</span>
-rake generate_session_store
-</code></pre><h3 id="2-3_主题">2.3  主题</h3>
-<pre><code>git clone 到 `<span class="regexp">/usr/</span>local<span class="regexp">/www/</span>redmine-<span class="number">2.5</span>.<span class="number">2</span><span class="regexp">/public/</span>themes`，到后台配置里面选定
-</code></pre><h3 id="2-4_插件">2.4  插件</h3>
-<pre><code>git clone 到 `<span class="regexp">/usr/</span>local<span class="regexp">/www/</span>redmine-<span class="number">2.5</span>.<span class="number">2</span><span class="regexp">/plugins`</span>
-</code></pre><h3 id="2-5_完成执行">2.5  完成执行</h3>
-<pre><code><span class="attribute">rake redmine:plugins:migrate RAILS_ENV</span>=<span class="string">production</span>
-</code></pre>
+        <h2 id="1_JavaScript简介">1 JavaScript简介</h2>
+<h3 id="1-2_JavaScript实现">1.2  JavaScript实现</h3>
+<ul>
+<li>核心（ECMAScript）</li>
+<li>文档对象模型（DOM）</li>
+<li>浏览器对象模型（BOM）</li>
+</ul>
+<h4 id="1-2-1_ECMAScript（提供核心语言功能）">1.2.1   ECMAScript（提供核心语言功能）</h4>
+<p>规定了该门语言的下列组成部分：语法、类型、语句、关键字、保留字、操作符、对象</p>
+<h4 id="1-2-2_文档对象模型（DOM）（提供访问和操作网页内容的方法和接口）">1.2.2   文档对象模型（DOM）（提供访问和操作网页内容的方法和接口）</h4>
+<p>是针对XML但经过扩展用于HTML的应用程序编程接口。</p>
+<p>2.DOM级别</p>
+<p>DOM1级有两个模块组成：DOM核心 和 DOM HTML.（思考两个模块干嘛的）<br>DOM2级的模块：DOM试图，DOM事件（事件和事件处理的接口），DOM样式（基于CSS为元素应用样式的接口），DOM遍历和范围（遍历和操作文档树的接口）</p>
+<p>3.其他DOM标准</p>
+<p>SVG、MathML、SMIL</p>
+
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2014/12/12/javascript/JavaScript高级程序设计-读书笔记（上）/#more" class="more-link">Read More</a>
+          </div>
         
         
       

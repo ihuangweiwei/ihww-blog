@@ -1,0 +1,787 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript高级程序设计-读书笔记（上） | ihww&#39;s Blog</title>
+  <meta name="author" content="ihuangweiwei">
+  
+  <meta name="description" content="1 JavaScript简介
+1.2  JavaScript实现
+
+核心（ECMAScript）
+文档对象模型（DOM）
+浏览器对象模型（BOM）
+
+1.2.1   ECMAScript（提供核心语言功能）
+规定了该门语言的下列组成部分：语法、类型、语句、关键字、保留字、操作符、对象
+1.2.2   文档对象模型（DOM）（提供访问和操作网页内容的方法和接口）
+是针对XML但经过扩展用于HTML的应用程序编程接口。
+2.DOM级别
+DOM1级有两个模块组成：DOM核心 和 DOM HTML.（思考两个模块干嘛的）DOM2级的模块：DOM试图，DOM事件（事件和事件处理的接口），DOM样式（基于CSS为元素应用样式的接口），DOM遍历和范围（遍历和操作文档树的接口）
+3.其他DOM标准
+SVG、MathML、SMIL">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="JavaScript高级程序设计-读书笔记（上）"/>
+  <meta property="og:site_name" content="ihww&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="ihww&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">ihww&#39;s Blog</a></h1>
+  <h2><a href="/">懒懒散散，恍恍惚惚，提笔忘字</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="https://github.com/ihuangweiwei">GitHub</a></li>
+    
+      <li><a href="http://fm.ihww.cn">FM</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-12-12T08:30:13.000Z"><a href="/2014/12/12/javascript/JavaScript高级程序设计-读书笔记（上）/">12月 12 2014</a></time>
+      
+      
+  
+    <h1 class="title">JavaScript高级程序设计-读书笔记（上）</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="1_JavaScript简介">1 JavaScript简介</h2>
+<h3 id="1-2_JavaScript实现">1.2  JavaScript实现</h3>
+<ul>
+<li>核心（ECMAScript）</li>
+<li>文档对象模型（DOM）</li>
+<li>浏览器对象模型（BOM）</li>
+</ul>
+<h4 id="1-2-1_ECMAScript（提供核心语言功能）">1.2.1   ECMAScript（提供核心语言功能）</h4>
+<p>规定了该门语言的下列组成部分：语法、类型、语句、关键字、保留字、操作符、对象</p>
+<h4 id="1-2-2_文档对象模型（DOM）（提供访问和操作网页内容的方法和接口）">1.2.2   文档对象模型（DOM）（提供访问和操作网页内容的方法和接口）</h4>
+<p>是针对XML但经过扩展用于HTML的应用程序编程接口。</p>
+<p>2.DOM级别</p>
+<p>DOM1级有两个模块组成：DOM核心 和 DOM HTML.（思考两个模块干嘛的）<br>DOM2级的模块：DOM试图，DOM事件（事件和事件处理的接口），DOM样式（基于CSS为元素应用样式的接口），DOM遍历和范围（遍历和操作文档树的接口）</p>
+<p>3.其他DOM标准</p>
+<p>SVG、MathML、SMIL</p>
+<a id="more"></a>
+
+<h4 id="1-2-3_浏览器对象模型（BOM）（提供与浏览器交互的方法和接口）">1.2.3   浏览器对象模型（BOM）（提供与浏览器交互的方法和接口）</h4>
+<p>一些扩展：</p>
+<ul>
+<li>navigator（浏览器信息）</li>
+<li>location（页面详细信息）</li>
+<li>screen（显示器分辨率详细信息）</li>
+<li>对cookies的支持</li>
+<li>如XMLHttpRequest、ActiveXObject 自定义对象</li>
+</ul>
+<h2 id="2_在HTML中使用JavaScript">2 在HTML中使用JavaScript</h2>
+<h4 id="2-1-2_延迟脚本">2.1.2   延迟脚本</h4>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">defer</span>=<span class="value">"defer"</span> <span class="attribute">src</span>=<span class="value">"example1.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><p>告诉浏览器立即下载，但延迟执行（有浏览器忽略该属性）</p>
+<h4 id="2-1-3_异步脚本">2.1.3   异步脚本</h4>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">async</span> <span class="attribute">src</span>=<span class="value">"example1.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre><h3 id="2-4_元素">2.4  <noscript>元素</noscript></h3>
+<p>符合以下情况，元素内内容会显示</p>
+<ul>
+<li>浏览器不支持脚本</li>
+<li>脚本被禁用</li>
+</ul>
+<h2 id="3_基本概念">3 基本概念</h2>
+<h3 id="3-1_语法">3.1  语法</h3>
+<h4 id="3-1-1_区分大小写">3.1.1   区分大小写</h4>
+<h4 id="3-1-2_标示符">3.1.2   标示符</h4>
+<p>标示符指的是变量、函数、属性的名字，函数的参数。</p>
+<ul>
+<li>第一个字符必须是字母、_或$</li>
+<li>其它字符可以是字母、下划线、美元符号或数字</li>
+</ul>
+<h4 id="3-1-4_严格模式">3.1.4   严格模式</h4>
+<pre><code><span class="pi">"use strict"</span>
+</code></pre><p>是一个编译指示（pragma），告诉支持的JavaScript引擎切换到严格模式。<code>函数内部也可以使用</code></p>
+<h3 id="3-4_数据类型">3.4  数据类型</h3>
+<p>ECMAScript中有5种简单数据类型：Undefined、Null、Boolean、Number和String。一种复杂数据类型：Object（本质上是由一组无序的明值对组成）。</p>
+<h4 id="3-4-1_typeof操作符">3.4.1   typeof操作符</h4>
+<p>返回某个字符串</p>
+<h4 id="3-4-2_Undefined类型">3.4.2   Undefined类型</h4>
+<p>Undefined类型只有<strong>一个值</strong>，即特殊的<strong>undefined</strong></p>
+<pre><code><span class="literal">undefined</span>==<span class="literal">undefined</span>    返回<span class="literal">true</span>
+</code></pre><h4 id="3-4-3_Null类型">3.4.3   Null类型</h4>
+<p>Null类型是第二个只有一个值的数据类型，是null。null值表示一个空对象指针，所以typeof检测null值会返回”object”的原因。</p>
+<p>undefined值是派生自null值的</p>
+<pre><code><span class="literal">null</span>==<span class="literal">undefined</span> 返回<span class="literal">true</span>
+</code></pre><h4 id="3-4-4_Boolean类型">3.4.4    Boolean类型</h4>
+<p>各种数据类型及其对应的转换规则</p>
+<h4 id="3-4-5_Number类型">3.4.5   Number类型</h4>
+<ol>
+<li>数值范围<br>Number.MAX_VALUE<br>Number.MIN_VALUE</li>
+</ol>
+<p>超出数值范围的值，会自动换换成特殊的Infinity值（负数转换为-Infinity(负无穷)）</p>
+<ol>
+<li>NaN<br>NaN，即非数值，是一个特殊的数值，这个数值用于表示一个本来要返回数值的操作数未返回数值的情况。</li>
+</ol>
+<p>两个特点：</p>
+<ul>
+<li>任何涉及NaN的操作都返回NaN</li>
+<li>NaN与任何值都不相等，包括NaN本身</li>
+</ul>
+<ol>
+<li>数值转换<br>略</li>
+</ol>
+<h4 id="3-4-6_String类型">3.4.6   String类型</h4>
+<p>用于表示由0或多个16位Unicode字符组成的字符串序列，即字符串。</p>
+<ol>
+<li>字符串的特点</li>
+</ol>
+<p>ECMAScript中的字符串是不可变的。</p>
+<h4 id="3-4-7_Object类型">3.4.7   Object类型</h4>
+<p>ECMAScript中的对象其实就是一组数据和功能的集合。</p>
+<h3 id="3-5_操作符">3.5  操作符</h3>
+<h4 id="3-5-7_相等操作符">3.5.7   相等操作符</h4>
+<p><strong>相等(==)和不相等（!=）</strong>：想转换再比较</p>
+<p><strong>全等(===)和不全等(!==)</strong>：仅比较而不转换</p>
+<h3 id="3-6_语句">3.6  语句</h3>
+<p>if  do-while    while   for for-in  label   break和continue  with    switch</p>
+<h3 id="3-7_函数">3.7  函数</h3>
+<h4 id="3-7-1_理解参数">3.7.1   理解参数</h4>
+<p>ECMAScript函数不介意传递进来多少个参数，也不在乎传进来参数是什么类型。在函数体内可以通过<code>arguments</code>对象来访问这个参数数组。</p>
+<h4 id="3-7-2_没有重载">3.7.2   没有重载</h4>
+<p>ECMAScript函数没有签名，因为其参数是由包含0或多个值的数组来表示的。</p>
+<h2 id="4_变量、作用域和内存问题">4 变量、作用域和内存问题</h2>
+<h3 id="4-1_基本类型和引用类型的值">4.1  基本类型和引用类型的值</h3>
+<p>JavaScript不允许直接访问内存中的位置，也就是说不能直接操作对象的内存空间。</p>
+<h4 id="4-1-1_动态的属性">4.1.1   动态的属性</h4>
+<p>引用类型的值，我们可以为其添加属性和方法，也可以改变和删除其属性和方法。（基本类型不行）</p>
+<h4 id="4-1-2_复制变量值">4.1.2   复制变量值</h4>
+<p>基本类型：如果一个变量想另一个变量复制基本类型的值，会在变量对象上创建一个新值。<br>引用类型：复制结束后，两个变量实际上将引用同一个对象。</p>
+<h4 id="4-1-3_传递参数">4.1.3   传递参数</h4>
+<p>ECMAScript中所有函数的参数都是按值传递的。（把函数外部的值复制给函数内部的参数，就和把值从一个变量复制到另一个变量一样）。</p>
+<h4 id="4-1-4_检测类型">4.1.4   检测类型</h4>
+<p><code>typeof</code>在检测引用类型的值时，这个操作符的用处不大。所以有了<code>instanceof</code>，所有引用类型的值都是Object的实例。</p>
+<h3 id="4-2_执行环境及作用域">4.2  执行环境及作用域</h3>
+<p>每个执行环境都是一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个对象中。（编写的代码无法访问这个对象，但解析器在处理数据时会在后台使用它）</p>
+<p>全局执行环境是最外围的一个执行环境。</p>
+<p>每个函数都有自己的<strong>执行环境</strong>。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。而在函数执行之后，栈将其环境弹出，把控制权返回给之前的执行环境。</p>
+<p>当代码在一个环境中执行时，会创建变量对象的一个<strong>作用域链</strong>。（保证对执行环境有权访问的所有变量和函数的有序访问）</p>
+<p><strong>需要补充</strong></p>
+<p>//TODO</p>
+<h3 id="4-3_垃圾收集">4.3  垃圾收集</h3>
+<h4 id="4-3-1_标记清除">4.3.1   标记清除</h4>
+<h4 id="4-3-2_引用计数">4.3.2   引用计数</h4>
+<h2 id="5_引用类型">5 引用类型</h2>
+<p>在ECMAScript中，<strong>引用类型</strong>是一种数据结构，用于将数据和功能组织在一起，它也常被称为<strong>类</strong>，不妥当（不具备传统面向对象语言所支持的类和接口等基本结构）。也称为<strong>对象定义</strong>，因为它们描述的是一类对象所具有的属性和方法。</p>
+<p>对象时某个特定引用类型的<strong>实例</strong>。新对象是使用new操作符后跟一个<strong>构造函数</strong>来创建的。</p>
+<h3 id="5-1_Object类型">5.1  Object类型</h3>
+<p>创建方式：</p>
+<pre><code><span class="keyword">var</span> person=<span class="keyword">new</span> <span class="built_in">Object</span>();
+person.name=<span class="string">"ihww"</span>;
+</code></pre><p>or(<strong>对象字面量</strong>)</p>
+<pre><code><span class="keyword">var</span> person={
+    name:<span class="string">"ihww"</span>
+}
+</code></pre><h3 id="5-2_Array类型">5.2  Array类型</h3>
+<p>ECMAScript数组的每一项可以保存任何类型的数据，同时数组的大小可以动态调整(如果传递的是数值，则数组的大小固定)。</p>
+<p>创建方式：</p>
+<pre><code><span class="keyword">var</span> names=<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="string">"Greg"</span>)
+<span class="keyword">var</span> names=<span class="built_in">Array</span>(<span class="string">"Greg"</span>)
+<span class="keyword">var</span> names=[]
+</code></pre><h4 id="5-2-1_检测数组">5.2.1   检测数组</h4>
+<p>instanceof操作符的问题在于，它假定只有一个全局执行环境（如果网页中包含多个框架，那实际上就存在两个以上不同的全局执行环境，从而存在两个以上不同版本的Array构造函数）。</p>
+<pre><code><span class="built_in">Array</span>。<span class="built_in">isArray</span>(value)
+</code></pre><h4 id="5-2-2_转换方法">5.2.2   转换方法</h4>
+<p>toLocaleString()、toString()和valueOf()方法，默认情况一逗号分隔的字符串的形式返回数组想。而是用join()方法，则可以是用不同的分隔符来构建这个字符串。</p>
+<p><code>如果数组中某一项的值是null或者undefined，则用空字符串代替</code></p>
+<h4 id="5-2-3_栈方法">5.2.3   栈方法</h4>
+<p>push()方法可以接收任意数量的参数，把它们逐个添加到数组末尾，并返回修改后数组的长度。<br>pop()方法则从数组末尾移除最后一项，减少数组的length值，然后返回移除的项。</p>
+<h4 id="5-2-4_队列方法">5.2.4   队列方法</h4>
+<p>shift()方法，取出第一项。<br>unshift()方法，它能在数组前端添加任意个项并返回新数组的长度。</p>
+<h4 id="5-2-5_重排序方法">5.2.5   重排序方法</h4>
+<p>reverse()反转数组项的顺序。<br>sort()方法可以自定义排序方法。</p>
+<h4 id="5-2-6_操作方法">5.2.6   操作方法</h4>
+<p>concat()、slice()、splice()</p>
+<h4 id="5-2-7_位置方法">5.2.7   位置方法</h4>
+<p>indexOf()和lastIndexOf()</p>
+<h4 id="5-2-8_迭代方法">5.2.8    迭代方法</h4>
+<p>略</p>
+<h4 id="5-2-9_归并方法">5.2.9   归并方法</h4>
+<p>reduce()和reduceRight()</p>
+<h3 id="5-3_Date类型">5.3  Date类型</h3>
+<p>日期格式化方法？<br>日期/时间组件方法？</p>
+<h3 id="5-4_RegExp类型">5.4  RegExp类型</h3>
+<pre><code><span class="keyword">var</span> expression= <span class="regexp">/ pattern /</span> flags;
+</code></pre><p>g:表示全局模式，即模式将被应用于所有字符串<br>i:表示不区分大小写模式<br>m:表示多行模式</p>
+<h4 id="5-4-1_RegExp实例属性">5.4.1   RegExp实例属性</h4>
+<ul>
+<li>global：布尔值，表示是否设置了g标志。</li>
+<li>ignoreCase：布尔值，表示是否设置了i标志</li>
+<li>lastIndex：整数，表示开始搜索下一个匹配项的字符位置，从0算起</li>
+<li>multiline：布尔值，表示是否设置了m标志</li>
+<li>source：正则表达式的字符串表示，按照字面量形式而非传入构造函数的字符串模式返回</li>
+</ul>
+<h4 id="5-4-2_RegExp实例方法">5.4.2   RegExp实例方法</h4>
+<pre><code>var text=<span class="string">"mom and dad and baby"</span>;
+var pattern=/mom( <span class="keyword">and</span> dad( <span class="keyword">and</span> baby)?)?/gi;
+var <span class="operator">matches</span>=pattern.exec(text);
+alert(<span class="operator">matches</span>.index);   //<span class="number">0</span>
+alert(<span class="operator">matches</span>.input);   //mom <span class="keyword">and</span> dad <span class="keyword">and</span> baby
+alert(<span class="operator">matches</span>[<span class="number">0</span>]);      //mom <span class="keyword">and</span> dad <span class="keyword">and</span> baby
+alert(<span class="operator">matches</span>[<span class="number">1</span>]);      // <span class="keyword">and</span> dad <span class="keyword">and</span> baby
+alert(<span class="operator">matches</span>[<span class="number">2</span>]);      // <span class="keyword">and</span> baby
+</code></pre><h4 id="5-4-3_RegExp构造函数属性">5.4.3   RegExp构造函数属性</h4>
+<h4 id="5-4-4_模式的局限性">5.4.4   模式的局限性</h4>
+<h3 id="5-5_Function类型">5.5  Function类型</h3>
+<p>每个函数都是Function类型的实例，而且都与其他引用类型一样具有属性和方法。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1,num2)</span></span>{
+    <span class="keyword">return</span> num1+num2;
+}
+等同于
+<span class="keyword">var</span> sum=<span class="function"><span class="keyword">function</span><span class="params">(num1,num2)</span></span>{
+    <span class="keyword">return</span> num1+num2;
+}
+等同于
+<span class="keyword">var</span> sum=<span class="keyword">new</span> <span class="function"><span class="keyword">Function</span><span class="params">(<span class="string">"num1"</span>,<span class="string">"num2"</span>,<span class="string">"return num1+num2"</span>)</span></span>; <span class="comment">//不推荐，会导致解析两次代码（第一次解析常规ECMAScript代码，第二次解析传入构造函数中的字符串，影响性能）</span>
+
+函数是对象，函数名是指针
+</code></pre><h4 id="5-5-1_没有重载">5.5.1   没有重载</h4>
+<p>将函数名想象为指针</p>
+<h4 id="5-5-2_函数声明与函数表达式">5.5.2   函数声明与函数表达式</h4>
+<p>解析器率先读取函数声明，并使其在执行任何代码之前可用</p>
+<h4 id="5-5-3_作为值的函数">5.5.3   作为值的函数</h4>
+<h4 id="5-5-4_函数内部属性">5.5.4   函数内部属性</h4>
+<p>两个特殊的对象：arguments和this。<br>argument:有一个名叫callee的属性，该属性石一个指针，指向拥有这个arguments对象的函数。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">factorial</span><span class="params">(num)</span></span>{
+    <span class="keyword">if</span>(num&lt;=<span class="number">1</span>){
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }<span class="keyword">else</span>{
+        <span class="keyword">return</span> num*factorial(num-<span class="number">1</span>)
+    }
+}
+等同于
+<span class="function"><span class="keyword">function</span> <span class="title">factorial</span><span class="params">(num)</span></span>{
+    <span class="keyword">if</span>(num&lt;=<span class="number">1</span>){
+        <span class="keyword">return</span> <span class="number">1</span>;
+    }<span class="keyword">else</span>{
+        <span class="keyword">return</span> num*<span class="built_in">arguments</span>.callee(num-<span class="number">1</span>)<span class="comment">//严格模式下，运行出错</span>
+    }
+}
+</code></pre><p>this：this引用的是函数据以执行的环境对象</p>
+<h4 id="5-5-5_函数属性和方法">5.5.5   函数属性和方法</h4>
+<p>每个函数都包含两个属性：length和prototype。<br>length：表示函数希望接收的命名参数的格式（方法参数个数）<br>prototype：对于ECMAScript中的引用类型而言，prototype是保存它们所有实例方法的真正所在。prototype属性是不可枚举的，因此使用for-in无法发现。</p>
+<p>每个函数都包含两个非继承而来的方法：<br>apply():接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组（也可以是Array的实例）<br>call():和apply作用相同，区别仅在于接收参数的方式不同，第一个参数this没有变化，变化的是其余参数都直接传递给函数</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1,num2)</span></span>{
+    <span class="keyword">return</span> num1+num2;
+}
+<span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1,num2)</span></span>{
+    <span class="keyword">return</span> sum.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>);
+    <span class="comment">//return sum.apply(this,[num1,num2])</span>
+}
+<span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1,num2)</span></span>{
+    <span class="keyword">return</span> sum.call(<span class="keyword">this</span>,num1,num2);
+}
+</code></pre><p>bind():创建一个函数的实例，其this值会被绑定到传给bind()函数的值</p>
+<pre><code><span class="built_in">window</span>.color=<span class="string">"red"</span>;
+<span class="keyword">var</span> o={color:<span class="string">"blue"</span>}
+
+<span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span></span>{
+    alert(<span class="keyword">this</span>.color);
+}
+<span class="keyword">var</span> objectSayColor=sayColor.bind(o);
+objectSayColor();
+</code></pre><h3 id="5-6_基本包装类型">5.6  基本包装类型</h3>
+<p>3个特殊的引用类型：Boolean、Number和String。（基本类型值不是对象，逻辑上它们不应该有方法）</p>
+<h3 id="5-7_单体内置对象">5.7  单体内置对象</h3>
+<p>内置对象：由ECMAScript实现提供的、不依赖于宿主环境的对象，这些对象在ECMAScript程序执行之前就已经存在了。</p>
+<h4 id="5-7-1_Global对象">5.7.1   Global对象</h4>
+<p>isNan()、isFinite()、parseInt()以及parseFloat()，都是Global对象的方法。</p>
+<p>1.encodeURI()、encodeURIComponent()编解码url</p>
+<p>2.eval()方法</p>
+<pre><code><span class="built_in">eval</span>(<span class="string">"alert('hi')"</span>);
+</code></pre><p>3.Global对象的属性</p>
+<p>?</p>
+<p>4.window对象</p>
+<p>Web浏览器都是将这个全局对象作为window对象的一部分加以实现的。</p>
+<h4 id="5-7-2_Math对象">5.7.2   Math对象</h4>
+<p>略</p>
+<h2 id="6_面向对象的程序设计">6 面向对象的程序设计</h2>
+<p>对象：无序属性的集合，其属性可以包含基本值、对象或者函数（无非就是一组名值对，其中值可以是数据或函数）。每个对象都是基于一个引用类型创建的。</p>
+<h3 id="6-1_理解对象">6.1  理解对象</h3>
+<h4 id="6-1-1_属性类型">6.1.1   属性类型</h4>
+<p>ECMAScript中有两种属性：数据属性和访问器属性。</p>
+<p><strong>1.数据属性</strong></p>
+<ul>
+<li>[[Configurable]]：表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。</li>
+<li>[[Enumerable]]：表示能否通过for-in循环返回属性。</li>
+<li>[[Writable]]：表示能否修改属性的值。</li>
+<li>[[Value]]：包含这个属性的数据值。</li>
+</ul>
+<p>要修改属性默认的特性，必须使用<code>Object.defineProperty()</code>方法</p>
+<p><strong>2.访问器属性</strong></p>
+<ul>
+<li>[[Configurable]]：表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或者能否把属性修改为访问器属性。</li>
+<li>[[Enumerable]]：表示能否通过for-in循环返回属性。</li>
+<li>[[Get]]：在读取属性时调用的函数。</li>
+<li>[[Value]]：在写入属性时调用的函数。</li>
+</ul>
+<h4 id="6-1-2_定义多个属性">6.1.2   定义多个属性</h4>
+<p><code>Object.defineProperties()</code>方法</p>
+<h4 id="6-1-3_读取属性的特性">6.1.3   读取属性的特性</h4>
+<p><code>Object.getOwnPropertyDescriptor()</code>方法</p>
+<h3 id="6-2_创建对象">6.2  创建对象</h3>
+<h4 id="6-2-1_工厂模式">6.2.1   工厂模式</h4>
+<p>工厂模式虽然解决了创建多个相似对象的问题，但却没有解决对象识别的问题（即怎么知道一个对象的类型）</p>
+<h4 id="6-2-2_构造函数模式">6.2.2   构造函数模式</h4>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>{
+    <span class="keyword">this</span>.name=name;
+    <span class="keyword">this</span>.age=age;
+    sayName=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        alert(<span class="keyword">this</span>.name);
+    }
+}
+<span class="keyword">var</span> person1=<span class="keyword">new</span> Person(<span class="string">"ihww"</span>,<span class="number">27</span>);
+
+person1.constructor == Person <span class="comment">//true</span>
+</code></pre><p><strong>以这种方式定义的构造函数是定义在Global对象中的</strong></p>
+<p><strong>1.将构造函数当做函数</strong></p>
+<pre><code><span class="comment">//当做构造函数使用</span>
+<span class="keyword">var</span> person1=<span class="keyword">new</span> Person(<span class="string">"ihww"</span>,<span class="number">27</span>);
+person.sayName(); <span class="comment">//ihww</span>
+
+<span class="comment">//作为普通函数调用</span>
+Person(<span class="string">"abc"</span>,<span class="number">27</span>);
+<span class="built_in">window</span>.sayName();<span class="comment">//abc</span>
+
+<span class="comment">//在另一个对象的作用域中调用</span>
+<span class="keyword">var</span> o=<span class="keyword">new</span> <span class="built_in">Object</span>();
+Person.call(o,<span class="string">'bbb'</span>,<span class="number">27</span>)
+o.sayName() <span class="comment">//bbb</span>
+</code></pre><p><strong>2.构造函数的问题</strong></p>
+<p>每个方法都要在每个实例上重新创建一遍。</p>
+<pre><code>    <span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>{
+        <span class="keyword">this</span>.name=name;
+        <span class="keyword">this</span>.age=age;
+        sayName=<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">"alert(this.name)"</span>);<span class="comment">//与声明函数在逻辑上是等价的</span>
+    }
+</code></pre><p>从这个角度上看构造函数，每个Person实例都包含一个不同的Function实例的本质。（这种方式创建函数，会导致不同的作用域链和标识符解析，但创建Function新实例的机制仍然相同）。</p>
+<pre><code>alert(person1.<span class="variable">sayName =</span>= person2.sayName) //<span class="constant">false</span>   不同实例上的同名函数是不相等的
+</code></pre><p>把sayName提取到全局域，导致一下问题：</p>
+<ul>
+<li>全局域中定义的函数实际只是被某个对象调用，名不副实</li>
+<li>如果对象需要定义很多方法</li>
+</ul>
+<p>解决方法<strong>原型模式</strong></p>
+<h4 id="6-2-3_原型模式">6.2.3   原型模式</h4>
+<p>我们创建的每个函数都有一个prototype(原型)属性，该属性是一个指针，指向一个对象（该对象的用途是包含可以由特定类型的所有实例共享的属性和方法）。</p>
+<p><strong>1.理解原型对象</strong></p>
+<p>所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。</p>
+<p>Person.prototype.constructor指向Person。而通过这个构造函数，我们还可以继续为原型对象添加其他属性和方法。</p>
+<p>创建了自定义的构造函数之后，原型对象默认只会取得constructor属性，其他方法都是从Object继承而来的。当调用构造函数创建一个新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象（<code>_proto_</code>也可以表示为[[Prototype]]）。这个连接存在于实例与构造函数的原型对象之间，不是存在于实例与构造函数之间。</p>
+<p><img src="/images/201412/prototype_1.png" alt="图6-1"></p>
+<p>解释：Person.prototype指向原型对象，而Person.prototype.constructor又指回了Person。原型对象中除了包含constructor属性，还有其他属性。Person的实例都包含一个内部属性（<em>proto</em>），该属性仅仅指向了Person.prototype;</p>
+<p>通过<code>isPrototypeOf()</code>方法来确定对象之间是否存在这种关系。</p>
+<pre><code><span class="function">alert</span>(Person<span class="class">.prototype</span><span class="class">.isPrototypeOf</span>(person1))；<span class="comment">//true</span>
+</code></pre><p>ECMAScript5增加了一个新方法，叫Object.getPrototypeOf(),这个方法返回<em>proto</em>的值</p>
+<pre><code>alert(<span class="built_in">Object</span>.getPrototypeOf(person1) == Person.prototype); <span class="comment">//true</span>
+alert(<span class="built_in">Object</span>.getPrototypeOf(person1).name); <span class="comment">//Nicholas</span>
+</code></pre><p><strong>每当代码读取某个对象的属性时，都会执行一次搜索，目标是具体给定名字的属性。搜索首先从对象实例本身开始，然后原型对象</strong></p>
+<p><strong>实例对象能访问原型中的值，但不能修改，如果我们在实例中添加一个原型同名属性，则该属性将会屏蔽原型中的那个属性，但可以使用delete操作符完全删除实例属性</strong></p>
+<p>使用<code>hasOwnProperty()</code>方法检测一个属性是否存在实例中，还是存在原型中（Object继承来的）。</p>
+<p><strong>2.原型与in操作符</strong></p>
+<p>两种方式使用in操作符：</p>
+<ul>
+<li>单独使用（通过对象能够访问给定属性时返回true）</li>
+<li>for-in循环中使用</li>
+</ul>
+<p><code>hasPrototypeProperty()</code>检测是否是原型中属性，如果实例覆盖了原型中属性则返回false，取得对象上所有可枚举的实例属性：<code>Object.keys()</code></p>
+<p><strong>3.更简单的原型语法</strong></p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span></span>{
+}
+Person.prototype={
+    name:<span class="string">"Nicholas"</span>,
+    age:<span class="number">27</span>
+}
+</code></pre><p>如果在原型中声明<code>constructor</code>属性，可能导致该特性的[[Enumerable]]为true，即可枚举。</p>
+<p><strong>4.原型的动态性</strong></p>
+<p>由于原型中查找值的过程是一次搜索，因此原型对象所做修改立即从实例上反映出来。</p>
+<p><strong>5.原生对象的原型</strong></p>
+<pre><code>alert(<span class="keyword">typeof</span> <span class="built_in">Array</span>.prototype.sort);<span class="comment">//function</span>
+</code></pre><p>通过原生对象的原型，可以定义新方法。</p>
+<p><strong>6.原型对象的问题</strong></p>
+<p>引用类型值的属性被实例属性可以修改，导致其它实例值修改。</p>
+<h3 id="6-2-4_组合使用构造函数模式和原型模式">6.2.4    组合使用构造函数模式和原型模式</h3>
+<p>构造函数模式用于定义实例属性，而原型模式用于定义方法和共享属性。</p>
+<h3 id="6-2-5_动态原型模式">6.2.5    动态原型模式</h3>
+<p>可以通过检查某个应该存在的方法是否有效，来决定是否需要初始化原型。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name,age)</span></span>{
+    <span class="keyword">this</span>.name=name;
+    <span class="keyword">this</span>.age=age;
+    <span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span>.sayName!=<span class="string">"function"</span>){
+        Person.prototype.sayName=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+            alert(<span class="keyword">this</span>.name);
+        }
+    }
+}
+</code></pre><p><em>不能使用对象字面量重写原型。如果在已经创建了实例的情况下重写原型，那么就会切断现有实例与新原型之间的联系</em></p>
+<h3 id="6-2-6_寄生构造函数模式">6.2.6    寄生构造函数模式</h3>
+<p>寄生（parasitic）构造函数模式，这种模式的基本思想是创建一个函数，该函数的作用仅仅是封装创建对象的代码，然后再返回新创建的对象</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name, age, job)</span></span>{
+    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();
+    o.name = name;
+    o.age = age;
+    o.job = job;
+    o.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        alert(<span class="keyword">this</span>.name);
+    };
+     <span class="keyword">return</span> o;
+}
+<span class="keyword">var</span> friend = <span class="keyword">new</span> Person(“Nicholas”, <span class="number">29</span>, “Software Engineer”);
+friend.sayName(); <span class="comment">//”Nicholas”</span>
+</code></pre><p>这个模式可以在特殊的情况下用来为对象创建构造函数。如果我们想创建一个具有额外方法的特殊数组。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">SpecialArray</span><span class="params">()</span></span>{
+    <span class="comment">//create the array</span>
+    <span class="keyword">var</span> values = <span class="keyword">new</span> <span class="built_in">Array</span>();
+    <span class="comment">//add the values</span>
+    values.push.apply(values, <span class="built_in">arguments</span>);
+    <span class="comment">//assign the method</span>
+    values.toPipedString = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> <span class="keyword">this</span>.join(“|”);
+    };
+    <span class="comment">//return it</span>
+    <span class="keyword">return</span> values;
+}
+<span class="keyword">var</span> colors = <span class="keyword">new</span> SpecialArray(“red”, “blue”, “green”);
+alert(colors.toPipedString()); <span class="comment">//”red|blue|green”</span>
+</code></pre><h3 id="6-2-7_稳妥构造函数模式">6.2.7    稳妥构造函数模式</h3>
+<p>指的是没有公共属性，而且其方法也不引用this的对象。稳妥对象最适合在一些安全的环境中（禁用this和new），或者在防止数据被其他应用程序（如Mashup程序）改动时使用。</p>
+<p>稳妥构造函数遵循与寄生构造函数类似的模式，但有两点不同：</p>
+<ul>
+<li>新创建对象的实例方法不引用this</li>
+<li>不使用new操作符调用构造函数</li>
+</ul>
+<p>改造下前面的Person构造函数：</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">(name, age, job)</span></span>{
+    <span class="comment">//create the object to return</span>
+    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();
+    <span class="comment">//optional: define private variables/functions here</span>
+    <span class="comment">//attach methods</span>
+    o.sayName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        alert(name);
+    };
+    <span class="comment">//return the object</span>
+    <span class="keyword">return</span> o;
+}
+</code></pre><p>创建的对象，除了使用sayName()方法之外，没有其它办法访问name的值。</p>
+<h2 id="6-3_继承">6.3   继承</h2>
+<p>许多OO语言都支持两种继承方式：接口继承和实现继承。接口继承只继承方法签名，而实现继承则继承实际的方法。（由于函数没有签名，在ECMAScript中无法实现接口继承，只支持实现继承，实现继承主要是依靠原型链来实现的）。</p>
+<h3 id="6-3-1_原型链">6.3.1    原型链</h3>
+<p>基本思想是利用原型让一个引用类型继承另一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。</p>
+<p>构造函数、原型和实例的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span><span class="params">()</span></span>{
+    <span class="keyword">this</span>.property = <span class="literal">true</span>;
+}
+SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    <span class="keyword">return</span> <span class="keyword">this</span>.property;
+};
+<span class="function"><span class="keyword">function</span> <span class="title">SubType</span><span class="params">()</span></span>{
+    <span class="keyword">this</span>.subproperty = <span class="literal">false</span>;
+}
+<span class="comment">//继承了SuperType</span>
+SubType.prototype = <span class="keyword">new</span> SuperType();
+SubType.prototype.getSubValue = <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>{
+    <span class="keyword">return</span> <span class="keyword">this</span>.subproperty;
+};
+<span class="keyword">var</span> instance = <span class="keyword">new</span> SubType();
+alert(instance.getSuperValue()); <span class="comment">//true</span>
+</code></pre><p><img src="/images/201412/prototype_2.png" alt="6-4"></p>
+<p><em>**1.别忘了默认的原型</em></p>
+<p><img src="/images/201412/prototype_2.png" alt="6-5"></p>
+<p><strong>2.确认原型和实例的关系</strong></p>
+<p>第一种方式：</p>
+<pre><code><span class="keyword">instanceof</span>
+</code></pre><p>第二中方式：</p>
+<pre><code><span class="built_in">Object</span>.prototype.isPrototypeOf(instance)
+</code></pre><p><strong>3.谨慎地定义方法</strong></p>
+<p>子类型有时候需要覆盖超类型的某个方法，或者需要添加超类型中不存在的某个方法。但不管怎样，给原型添加方法的代码一定要放在替换原型的语句之后。</p>
+<p><strong>4.原型链的问题</strong></p>
+<p>还是引用类型的问题，穿件子类型的实例是，不能向超类型的构造函数中传递参数。</p>
+<h4 id="6-3-2_借用构造函数">6.3.2   借用构造函数</h4>
+<p>为了解决引用类型值所带来的问题。在子类型构造函数的内部调用超类型构造函数，</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">SubType</span><span class="params">()</span></span>{
+    <span class="comment">//继承了SuperType</span>
+    SuperType.call(<span class="keyword">this</span>); <span class="comment">//同样可以传递参数</span>
+}
+</code></pre><p>//TODO 后续小章节需要补充</p>
+<h2 id="7_函数表达式">7 函数表达式</h2>
+<h3 id="7-2_闭包">7.2  闭包</h3>
+<p>闭包是指有权访问另一个函数作用域中的变量的函数。创建闭包的常见方式，就是在一个函数内部创建另一个函数。</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">createComparisonFunction</span><span class="params">(propertyName)</span> </span>{
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(object1, object2)</span></span>{
+        <span class="keyword">var</span> value1 = object1[propertyName];
+        <span class="keyword">var</span> value2 = object2[propertyName];
+        <span class="keyword">if</span> (value1 &lt; value2){
+            <span class="keyword">return</span> -<span class="number">1</span>;
+        } <span class="keyword">else</span> <span class="keyword">if</span> (value1 &gt; value2){
+            <span class="keyword">return</span> <span class="number">1</span>;
+        } <span class="keyword">else</span> {
+            <span class="keyword">return</span> <span class="number">0</span>;
+        }
+        };
+}
+</code></pre><p><em>闭包会携带包含它的函数的作用域，因此会比其他函数占用更多的内存</em></p>
+<h4 id="7-2-1_闭包与变量">7.2.1   闭包与变量</h4>
+<p>闭包只能取得包含函数中任何变量的最后一个值（作用域链的配置机制引起的）。用数组分别保存。</p>
+<h4 id="7-2-2_关于this对象">7.2.2   关于this对象</h4>
+<p>this对象是在运行时基于函数的执行环境绑定的：在全局函数中，this等于window，而当函数被当做某个对象的方法调用时，this等于那个对象。不过，匿名函数的执行环境具有全局性，因此其this对象通常指向window。</p>
+<pre><code><span class="keyword">var</span> name=<span class="string">"The window"</span>;
+<span class="keyword">var</span> object={
+    name:<span class="string">"My Object"</span>,
+    getNameFunc:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+            <span class="keyword">return</span> <span class="keyword">this</span>.name;
+        }
+    }
+};
+alert(object.getNameFunc()()); <span class="comment">//The Window(非严格模式下)</span>
+</code></pre><p>通常做法</p>
+<pre><code><span class="keyword">var</span> name=<span class="string">"The window"</span>;
+<span class="keyword">var</span> object={
+    name:<span class="string">"My Object"</span>,
+    getNameFunc:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="keyword">var</span> that=<span class="keyword">this</span>;
+        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+            <span class="keyword">return</span> that.name;
+        }
+    }
+};
+alert(object.getNameFunc()()); <span class="comment">//My Object</span>
+</code></pre><p><em>arguments存在同样的问题</em></p>
+<h4 id="7-2-3_内存泄漏">7.2.3   内存泄漏</h4>
+<p>闭包中循环引用</p>
+<h3 id="7-3_模仿块级作用域">7.3  模仿块级作用域</h3>
+<pre><code><span class="list">(<span class="title">function</span><span class="list">()</span>{
+    //这里是快级作用域
+})</span><span class="list">()</span><span class="comment">;</span>
+</code></pre><h3 id="7-4_私有变量">7.4  私有变量</h3>
+<p>任何在函数中定义的变量，都可以认为是私有变量，因为不能再函数的外部访问这些变量</p>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">MyObject</span><span class="params">()</span></span>{
+    <span class="comment">//私有变量和私有函数</span>
+    <span class="keyword">var</span> privateVariable=<span class="number">10</span>;
+    <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+
+    <span class="comment">//特权方法</span>
+    <span class="keyword">this</span>.publicMethod=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        privateVariable++;
+        <span class="keyword">return</span> privateFunction();
+    }
+}
+</code></pre><h4 id="7-4-1_静态私有变量">7.4.1    静态私有变量</h4>
+<pre><code>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    <span class="keyword">var</span> name = “”;
+    Person = <span class="function"><span class="keyword">function</span><span class="params">(value)</span></span>{
+        name = value;
+    };
+    Person.prototype.getName = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> name;
+    };
+    Person.prototype.setName = <span class="function"><span class="keyword">function</span> <span class="params">(value)</span></span>{
+        name = value;
+    };
+})();
+<span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(“Nicholas”);
+alert(person1.getName()); <span class="comment">//”Nicholas”</span>
+person1.setName(“Greg”);
+alert(person1.getName()); <span class="comment">//”Greg”</span>
+<span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(“Michael”);
+alert(person1.getName()); <span class="comment">//”Michael”</span>
+alert(person2.getName()); <span class="comment">//”Michael”</span>
+</code></pre><p>变量name就变成了一个静态的，由所有实例共享的属性</p>
+<h4 id="7-4-2_模块模式">7.4.2   模块模式</h4>
+<p>模块模式是为了单例创建私有变量和特权方法。</p>
+<pre><code><span class="keyword">var</span> singleton={
+    <span class="comment">//私有变量和私有函数</span>
+    <span class="keyword">var</span> privateVariable=<span class="number">10</span>;
+    <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+
+    <span class="keyword">return</span> {
+        publicProperty:<span class="literal">true</span>,
+        publicMethod:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+            privateVariable++;
+            <span class="keyword">return</span> privateFunction();
+        }
+    }
+}
+</code></pre><p>在Web应用程序中，经常需要使用一个单例来管理应用程序级的信息。</p>
+<h4 id="7-4-3_增强的模块模式">7.4.3   增强的模块模式</h4>
+<pre><code><span class="keyword">var</span> singleton={
+    <span class="comment">//私有变量和私有函数</span>
+    <span class="keyword">var</span> privateVariable=<span class="number">10</span>;
+    <span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> <span class="literal">false</span>;
+    }
+    <span class="comment">//创建对象</span>
+    <span class="keyword">var</span> object=<span class="keyword">new</span> CustomType();
+    <span class="comment">//添加特权/共有属性和方法</span>
+    object.publicProperty=<span class="literal">true</span>;
+    object.publicMethod=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        privateVariable++;
+        <span class="keyword">return</span> privateFunction();
+    }
+    <span class="comment">//返回这个对象</span>
+    <span class="keyword">return</span> object;
+}
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">留言</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://blog.ihww.cn/2014/12/12/javascript/JavaScript高级程序设计-读书笔记（上）/" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:blog.ihww.cn">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Git/">Git</a><small>1</small></li>
+  
+    <li><a href="/tags/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>1</small></li>
+  
+    <li><a href="/tags/nodejs/">nodejs</a><small>3</small></li>
+  
+    <li><a href="/tags/ruby/">ruby</a><small>1</small></li>
+  
+    <li><a href="/tags/前端构建/">前端构建</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 ihuangweiwei
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+<div id="51la">
+<script language="javascript" type="text/javascript" src="http://js.users.51.la/17471211.js"></script>
+<noscript><a href="http://www.51.la/?17471211" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/17471211.asp" style="border:none" /></a></noscript>
+</div>
+
+<script type="text/javascript">
+document.getElementById("51la").style.display="none";
+</script>
+</body>
+</html>
