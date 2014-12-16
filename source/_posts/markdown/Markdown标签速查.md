@@ -7,6 +7,6 @@ tags: Markdown
 
 截了ghost博客提供的一张Markdown速记图片
 
-![Markdown速记手册](/201412/images/Markdown_1.png)
+![Markdown速记手册](/images/201412/Markdown_1.png)
 
 Markdown语法参考：<http://wowubuntu.com/markdown/>
