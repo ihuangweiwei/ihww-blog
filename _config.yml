@@ -80,6 +80,12 @@ disqus_shortname:
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
 theme: themes/yilia
+
+feed:
+    type: atom
+    path: atom.xml
+    limit: 20
+
 exclude_generator:
 
 # Deployment
