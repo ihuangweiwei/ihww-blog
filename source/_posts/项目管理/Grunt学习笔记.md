@@ -17,6 +17,7 @@ tags:
 
     npm install grunt-contrib-uglify --save-dev
 
+<!-- more -->
 
 **配置实例**
 

@@ -29,7 +29,7 @@ date: 2014-11-26 10:29:39
 + [Kraken：改变PayPal开发文化的Node.js框架](http://www.csdn.net/article/2013-11-25/2817617-PayPal-Kraken-Nodejs-Framework)
 + [Groupon抛弃Rails，转向Node.js](http://www.iteye.com/news/28358)
 
-
+<!-- more -->
 ##经验分享
 
 + [SDCC讲师专访：淘宝朴灵谈Node.js](http://www.csdn.net/article/2012-07-30/2807863)
