@@ -17,10 +17,10 @@ twitter:
   tweet_count: 5
 
 addthis:
-  enable: true
+  enable: false
   pubid:
-  facebook: true
-  twitter: true
+  facebook: false
+  twitter: false
   google: true
   pinterest: true
 
