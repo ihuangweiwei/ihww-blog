@@ -283,3 +283,103 @@ NamedNodeMap对象拥有下列方法：
 
 ####10.1.4  Text类型
 
+文本节点由Text类型表示，包含的是可以照字面解释的纯文本内容。Text节点具有以下特性：
+
++   nodeType的值为3
++   nodeName的值为“#text”
++   nodeValue的值为节点所包含的文本
++   parentNode是一个Element
++   不支持子节点
++   appendData(text)：将text添加到节点的末尾
++   deleteData(offset,count)：从offset指定的位置开始删除count个字符
++   insertData(offset,count,text)：在offset指定位置插入text
++   replaceData(offset,count,text)：用text替换从offset指定的位置开始到offset+count为止处的文本
++   splitText(offset)：从offset指定的位置将当期文本节点分成两个文本节点
++   substringData(offset,count)：提取从offset指定位置开始到offset+count为止处的字符串
+
+*没有内容，也就没有文本节点*
+
+    createTextNode("<strong>hello</strong>")
+
+####10.1.5  Comment类型
+
+Comment节点具有下列特性：
+
++   nodeType的值为8
++   nodeName的值为“#comment”
++   nodeValue的值是注释的内容
++   parentNode可能是Document或Element
++   不支持子节点
+
+    <div id='myDiv'><!--A comment --></div>
+    document.createComment("A comment");
+
+####10.1.6  CDATASection类型
+
+只针对基于XML的文档，表示的是CDATA区域。继承自Text类型，CDATASection节点具有下列特性：
+
++   nodeType的值为4
++   nodeName的值为“#cdata-section”
++   nodeValue的值是CDATA区域中的内容
++   parentNode可能是Document或Element
++   不支持子节点
+
+    <div id='myDiv'>![CDATA[This is some content]]</div>
+    document.createCDataSection();
+
+####10.1.7  DocumentType类型
+
+DocumentType类型在Web浏览器中并不常用，仅有Firefox、Safari和Opera支持它。它具有下列特性
+
++   nodeType的值为10
++   nodeName的值为doctype的名称
++   nodeValue的值为null
++   parentNode是Document
++   不支持子节点
+
+####10.1.8  DocumentFragment类型
+
+略
+
+####10.1.9  Attr类型
+
+元素的特性在DOM中以Attr类型来表示。在所有浏览器中，都可以访问Attr类型的构造函数和原型。从技术角度讲，特性就存在于元素的attributes属性中的节点。特性节点具有以下特征：
+
++   nodeType的值为2
++   nodeName的值是特性的名称
++   nodeValue的值是特性的值
++   parentNode的值为null
++   在HTML中不支持子节点
++   在XML中子节点可以使Text或EntityReference
+
+###10.2 DOM操作技术
+
+####10.2.1  动态脚本
+
+    function loadScript(url){
+        var script=document.createElement("script");
+        script.type="text/javascript";
+        script.src=url;
+        document.body.appendChild(script);
+    }
+
+*无法知道脚本是否加载完成*
+
+####10.2.2  动态样式
+
+    function loadStyles(url){
+        var link=document.createElement("link");
+        link.rel="stylesheet";
+        link.type="text/css";
+        link.href=url;
+        var head=document.getElementByTagName("head")[0];
+        head.appendChild(link);
+    }
+
+####10.2.3  操作表格
+
+了解HTMLDOM为<table>、<tbody>和<tr>元素添加的一些熟悉和方法
+
+####10.2.4  使用NodeList
+
+理解NodeList及其“近亲”NamedNodeMap和HTMLCollection，是从整体上透彻理解DOM的关键所在。都是“动态的”，每当文档结构发生变化，他们都会更新。
