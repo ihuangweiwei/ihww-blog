@@ -103,7 +103,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud">
-						<a href="/tags/Git/" style="font-size: 10.00px;">Git</a><a href="/tags/Markdown/" style="font-size: 10.00px;">Markdown</a><a href="/tags/javascript/" style="font-size: 10.00px;">javascript</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/ruby/" style="font-size: 10.00px;">ruby</a><a href="/tags/前端构建/" style="font-size: 10.00px;">前端构建</a>
+						<a href="/tags/Git/" style="font-size: 10.00px;">Git</a><a href="/tags/Markdown/" style="font-size: 10.00px;">Markdown</a><a href="/tags/idea/" style="font-size: 10.00px;">idea</a><a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/nodejs/" style="font-size: 20.00px;">nodejs</a><a href="/tags/ruby/" style="font-size: 10.00px;">ruby</a><a href="/tags/前端构建/" style="font-size: 10.00px;">前端构建</a><a href="/tags/破解/" style="font-size: 10.00px;">破解</a>
 					</div>
 				</section>
 				
@@ -156,6 +156,163 @@
 	</div>
 </nav>
       
+  
+    <article id="post-项目管理/Git资料" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/12/03/项目管理/Git资料/" class="article-date">
+  	<time datetime="2014-12-03T06:22:52.000Z" itemprop="datePublished">12月 3 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/03/项目管理/Git资料/">Git资料</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、推荐学习网站">一、推荐学习网站</h2>
+<p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰 Git教程</a><br><a href="http://git.oschina.net/progit/" target="_blank" rel="external">Pro Git（中文版）</a></p>
+<h2 id="二、日常git命令总结">二、日常git命令总结</h2>
+<p><strong>回退版本</strong></p>
+<pre><code>git log <span class="comment">--pretty=oneline</span>
+git <span class="operator"><span class="keyword">reset</span> <span class="comment">--hard 3628164</span></span>
+</code></pre><p><strong>撤销修改</strong></p>
+<pre><code><span class="comment">git</span> <span class="comment">checkout</span> <span class="literal">-</span><span class="literal">-</span> <span class="comment">readme</span><span class="string">.</span><span class="comment">txt</span>
+</code></pre><p><strong>添加远程仓库</strong></p>
+<pre><code>git remote <span class="keyword">add</span> origin git_url
+git <span class="keyword">push</span> -u origin master
+</code></pre><p><strong>分支管理</strong></p>
+<pre><code>git checkout -b dev
+git merge dev
+git branch <span class="operator">-d</span> dev
+</code></pre><p><strong>临时Bug处理</strong></p>
+<pre><code>git stash
+git checkout master
+git checkout <span class="attribute">-b</span> issue<span class="subst">-</span><span class="number">101</span>
+<span class="attribute">...</span><span class="built_in">.</span>处理<span class="attribute">...</span><span class="built_in">.</span>
+git checkout master
+git merge <span class="subst">--</span>no<span class="attribute">-ff</span> <span class="attribute">-m</span> <span class="string">"merged bug fix 101"</span> issue<span class="subst">-</span><span class="number">101</span>
+git branch <span class="attribute">-d</span> issue<span class="subst">-</span><span class="number">101</span>
+git checkout dev
+git stash <span class="built_in">list</span>
+git stash pop  <span class="comment">//git stash apply stash@{0}</span>
+</code></pre><p><strong>标签处理</strong></p>
+<pre><code>git tag v1.<span class="number">0</span>
+git tag -d v<span class="number">0</span>.<span class="number">1</span>
+git push origin v1.<span class="number">0</span>
+删除远程标签
+先删本地
+git tag -d v1.<span class="number">0</span>
+git push origin <span class="symbol">:refs/tags/v1</span>.<span class="number">0</span>
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-nodejs/node-js中文资源导航" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/26/nodejs/node-js中文资源导航/" class="article-date">
+  	<time datetime="2014-11-26T02:29:39.000Z" itemprop="datePublished">11月 26 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/26/nodejs/node-js中文资源导航/">node.js中文资源导航</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Node-js">Node.js</h2>
+<ul>
+<li><a href="http://www.nodejs.org/" target="_blank" rel="external">HomePage</a></li>
+<li><a href="http://www.infoq.com/cn/articles/what-is-nodejs" target="_blank" rel="external">Infoq深入浅出Node.js系列（进阶必读）</a></li>
+<li><a href="http://nodeapi.ucdok.com/#/api/" target="_blank" rel="external">Node.js中文文档</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/web/1201_wangqf_nodejs/" target="_blank" rel="external">被误解的 Node.js</a></li>
+<li><a href="http://deadhorse.me/nodejs/2012/10/08/c_addon_in_nodejs_node_gyp.html" target="_blank" rel="external">Node.js C++ addon编写实战系列</a></li>
+<li><a href="https://nodejsmodules.org/" target="_blank" rel="external">热门node.js模块排行榜，方便找出你想要的模块</a></li>
+<li><a href="http://cnodejs.org/topic/518b679763e9f8a5424406e9" target="_blank" rel="external">nodejs多线程，真正的非阻塞</a></li>
+<li><a href="http://cnodejs.org/topic/5189ff4f63e9f8a54207f60c" target="_blank" rel="external">浅析nodejs的buffer类</a></li>
+<li><a href="http://cnodejs.org/topic/519ceb5263e9f8a542c19764" target="_blank" rel="external">利用libuv编写异步多线程的addon实例</a></li>
+<li><a href="http://weizhifeng.net/node-js-exports-vs-module-exports.html" target="_blank" rel="external">Node.js中exports与module.exports的区别</a></li>
+<li><a href="http://cnodejs.org/topic/5293550ca6957a08096508fb" target="_blank" rel="external">Node.js http 管道拒绝服务漏洞</a></li>
+<li><a href="http://yaohuiji.com/2013/01/08/pro-node-article-list/" target="_blank" rel="external">Node.js高级编程</a></li>
+<li><a href="https://github.com/dead-horse/node-style-guide" target="_blank" rel="external">Node.js代码风格指南</a></li>
+</ul>
+<h2 id="业界新闻">业界新闻</h2>
+<ul>
+<li><a href="http://www.csdn.net/article/2013-12-17/2817827-10-surprising-Node.js-projects" target="_blank" rel="external">NodeJS无所不能：细数10个令人惊讶的NodeJS开源项目</a></li>
+<li><a href="http://www.csdn.net/article/2013-05-20/2815364-how-ebays-first-node-js-application-were-built" target="_blank" rel="external">看eBay如何评价他们的Node.js首次尝鲜</a></li>
+<li><a href="http://www.csdn.net/article/2012-05-03/2805296" target="_blank" rel="external">程序员如何说服老板采用Node.js？</a></li>
+<li><a href="http://www.csdn.net/article/2012-08-21/2808861" target="_blank" rel="external">百万级并发 Node.js也能行</a></li>
+<li><a href="http://www.rockdai.com/?p=596" target="_blank" rel="external">高性能Node.js：来自LinkedIn Mobile的10条优化建议</a></li>
+<li><a href="http://www.csdn.net/article/2013-11-25/2817617-PayPal-Kraken-Nodejs-Framework" target="_blank" rel="external">Kraken：改变PayPal开发文化的Node.js框架</a></li>
+<li><a href="http://www.iteye.com/news/28358" target="_blank" rel="external">Groupon抛弃Rails，转向Node.js</a></li>
+</ul>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/2014/11/26/nodejs/node-js中文资源导航/#more">more >></a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-blog/hexo博客搭建" class="article article-type-post" itemscope itemprop="blogPost">
   

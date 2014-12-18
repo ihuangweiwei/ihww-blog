@@ -4,7 +4,7 @@
   <subtitle><![CDATA[懒懒散散，恍恍惚惚，提笔忘字]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.ihww.cn/"/>
-  <updated>2014-12-17T05:28:59.161Z</updated>
+  <updated>2014-12-18T04:03:14.361Z</updated>
   <id>http://blog.ihww.cn/</id>
   
   <author>
@@ -13,6 +13,376 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[IntelliJ IDEA 14 在线注册机]]></title>
+    <link href="http://blog.ihww.cn/2014/12/18/key/IntelliJ%20IDEA%2014%20%E5%9C%A8%E7%BA%BF%E6%B3%A8%E5%86%8C%E6%9C%BA/"/>
+    <id>http://blog.ihww.cn/2014/12/18/key/IntelliJ IDEA 14 在线注册机/</id>
+    <published>2014-12-18T03:53:28.000Z</published>
+    <updated>2014-12-18T04:02:36.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="/images/201412/idea_14.png" alt="IntelliJ IDEA 14"></p>
+<p><strong><a href="http://inhu.net/intellij-idea-14-keygen.html" target="_blank" rel="external">http://inhu.net/intellij-idea-14-keygen.html</a>这哥们一直很勤快的，<code>100个赞</code>!</strong></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="/images/201412/idea_14.png" alt="IntelliJ IDEA 14"></p>
+<p><strong><a href="http://inhu.net/intellij-idea-14-keygen.html" targe]]>
+    </summary>
+    
+      <category term="idea" scheme="http://blog.ihww.cn/tags/idea/"/>
+    
+      <category term="破解" scheme="http://blog.ihww.cn/tags/%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript高级程序设计-读书笔记（中）]]></title>
+    <link href="http://blog.ihww.cn/2014/12/17/javascript/JavaScript%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%AD%EF%BC%89/"/>
+    <id>http://blog.ihww.cn/2014/12/17/javascript/JavaScript高级程序设计-读书笔记（中）/</id>
+    <published>2014-12-17T08:30:14.000Z</published>
+    <updated>2014-12-18T01:49:45.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="8_BOM">8 BOM</h2>
+<h3 id="8-1_window对象">8.1  window对象</h3>
+<p>BOM的核心对象时window，它表示浏览器的一个实例。在浏览器中，window对象既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</p>
+<h4 id="8-1-1_全局作用域">8.1.1   全局作用域</h4>
+<p>var语句添加window属性有一个名为[[Configurable]]的特性，这个值被设置为false。以及</p>
+<pre><code>var <span class="keyword">abc</span>=<span class="string">'1'</span>;
+dd=<span class="string">'2'</span>;
+<span class="built_in">delete</span> <span class="keyword">abc</span>;
+<span class="built_in">delete</span> dd;
+alert(<span class="keyword">abc</span>);//抛出错误 <span class="keyword">abc</span> <span class="keyword">is</span> not defined
+alert(dd);//<span class="number">2</span>
+</code></pre><p>但我们可以通过查询window对象，知道某个声明变量是否存在：</p>
+<pre><code><span class="comment">//这里会抛出错误，因为oldValue未定义</span>
+<span class="keyword">var</span> newValue=oldValue;
+<span class="comment">//这里不会抛出错误，因为这是一次属性查询</span>
+<span class="comment">//newValue的值是undefined</span>
+<span class="keyword">var</span> newValue=<span class="built_in">window</span>.oldValue;
+</code></pre><p><a id="more"></a></p>
+<h4 id="8-1-2_窗口关系及框架">8.1.2   窗口关系及框架</h4>
+<p>如果页面中包含框架，则每个框架都拥有自己的window对象，并且保存在frames集合中（可以通过数值索引或者框架名称来访问相应window对象）</p>
+<p><img src="/images/201412/javascript_8_1.png" alt="图8-1"></p>
+<p>top对象始终指向最高（最外）层的框架，也就是浏览器窗口。使用它可以确保一个框架中正确地访问另一个框架</p>
+<h4 id="8-1-3_窗口位置">8.1.3   窗口位置</h4>
+<p>IE、Safari、Opera和Chrome都提供了screenLeft（窗口相对于屏幕左边的位置）和screenTop（上边的位置）属性。Firefox则在screenX和screenY属性中提供。</p>
+<pre><code><span class="comment">//将窗口移动到屏幕左上角（x,y坐标）</span>
+<span class="built_in">window</span>.moveTo(<span class="number">0.0</span>);
+
+<span class="comment">//moveBy()接收的是在水平和垂直方向上移动的像素值</span>
+<span class="built_in">window</span>.moveBy(<span class="number">0</span>,<span class="number">100</span>)
+</code></pre><p>这两个方法可能会被浏览器禁用（Opera和IE7（及更高版本），默认禁用）。</p>
+<h4 id="8-1-4_窗口大小">8.1.4   窗口大小</h4>
+<p>IE9+、Firefox、Safari、Opera和Chrome均为此提供了4个属性：innerWidth、innerHeight、outerWidth和outerHeight。注意不同浏览器返回的值可能是包含窗口本身尺寸。</p>
+<p>IE、Firefox、Safari、Opera和Chrome中，<code>document.documentElement.clientWidth</code>和<code>document.documentElement.clientHeight</code>中保存了页面视图的信息。</p>
+<p>使用resizeTo()和resizeBy()方法可以调整浏览器窗口的大小。</p>
+<h4 id="8-1-5_导航和打开窗口">8.1.5   导航和打开窗口</h4>
+<p>使用<code>window.open()</code>方法既可以导航到一个特定的URL，也可以打开一个新的浏览器窗口。<strong>需要了解其参数</strong></p>
+<h4 id="8-1-6_间歇调用和超时调用">8.1.6   间歇调用和超时调用</h4>
+<p>超时调用</p>
+<pre><code><span class="comment">//推荐的调用方式，设置超时调用</span>
+<span class="keyword">var</span> timeoutId=setTime(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+    alert(<span class="string">"hello world"</span>);
+},<span class="number">1000</span>);
+<span class="comment">//取消</span>
+clearTimeout(timeoutId);
+</code></pre><p>间歇调用</p>
+<pre><code><span class="function"><span class="title">setInterval</span><span class="params">()</span>
+<span class="title">clearInterval</span><span class="params">()</span></span>
+</code></pre><h3 id="8-2_location对象">8.2   location对象</h3>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th style="text-align:center">例子</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hash</td>
+<td style="text-align:center">#contents</td>
+<td style="text-align:center">返回URL中的hash（#号后跟的字符）</td>
+</tr>
+<tr>
+<td>host</td>
+<td style="text-align:center">blog.ihww.cn:8080</td>
+<td style="text-align:center">返回服务器名称和端口号</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td style="text-align:center">blog.ihww.cn</td>
+<td style="text-align:center">不带端口号的服务器名称</td>
+</tr>
+<tr>
+<td>href</td>
+<td style="text-align:center"><a href="http://blog.ihww.cn" target="_blank" rel="external">http://blog.ihww.cn</a></td>
+<td style="text-align:center">返回当前加载页面的完整URL</td>
+</tr>
+<tr>
+<td>pathname</td>
+<td style="text-align:center">/query/</td>
+<td style="text-align:center">返回URL中的目录和文件名</td>
+</tr>
+<tr>
+<td>port</td>
+<td style="text-align:center">8080</td>
+<td style="text-align:center">端口号</td>
+</tr>
+<tr>
+<td>protocol</td>
+<td style="text-align:center">http</td>
+<td style="text-align:center">协议</td>
+</tr>
+<tr>
+<td>search</td>
+<td style="text-align:center">?q=javascript</td>
+<td style="text-align:center">返回URL的查询字符串</td>
+</tr>
+</tbody>
+</table>
+<h4 id="8-2-1_查询字符串参数">8.2.1   查询字符串参数</h4>
+<h4 id="8-2-2_位置操作">8.2.2   位置操作</h4>
+<ul>
+<li><code>location.assign(&quot;http://blog.ihww.cn&quot;)</code>立即打开新URL并在浏览器的历史记录中生成一条记录。如果将location.href或window.location设置为一个URL，也会调用该方法。</li>
+<li>通过修改location的属性，也可以改变当前加载的页面。</li>
+</ul>
+<h3 id="8-3_navigator对象">8.3  navigator对象</h3>
+<p>已经成为识别客户端浏览器的事实标准。</p>
+<p>//TODO 属性</p>
+<h4 id="8-3-1_检测插件">8.3.1   检测插件</h4>
+<p>对于非IE浏览器，可以使用plugins数组来达到这个目的。</p>
+<ul>
+<li>name：插件的名字</li>
+<li>description：插件的描述</li>
+<li>filename：插件的文件名</li>
+<li>length：插件会处理的MIME类型数量</li>
+</ul>
+<h4 id="8-3-2_注册处理程序">8.3.2   注册处理程序</h4>
+<p><code>registerContentHandler()</code>和<code>registerProtocolHandler()</code>方法</p>
+<h3 id="8-4_screen对象">8.4  screen对象</h3>
+<p>screen对象基本上只是用来表明客户端的能力，包括浏览器窗口外部的显示器信息</p>
+<h3 id="8-5_history对象">8.5  history对象</h3>
+<p>history对象保存着用户上网的历史记录，从窗口被打开的那一刻算起。<code>length</code>属性保存历史记录的数量</p>
+<pre><code><span class="keyword">history</span>.<span class="keyword">go</span>()
+//后退一页
+<span class="keyword">history</span>.back()
+//前进一页
+<span class="keyword">history</span>.forward()
+</code></pre><h2 id="9_客户端检测">9 客户端检测</h2>
+<p>略</p>
+<h2 id="10_DOM">10    DOM</h2>
+<h3 id="10-1_节点层次">10.1 节点层次</h3>
+<h4 id="10-1-1_Node类型">10.1.1  Node类型</h4>
+<p>DOM1级定义了一个Node接口，该接口将有DOM中的所有节点类型实现。每个节点都有一个nodeType属性，用于表明节点的类型。节点类型由在Node类型中定义的下列12个数值常量来表示：</p>
+<ul>
+<li>Node.ELEMENT_NODE(1)</li>
+<li>Node.ATTRIBUTE_NODE(2)</li>
+<li>Node.TEXT_NODE(3)</li>
+<li>Node.CDATA_SECTION_NODE(4)</li>
+<li>Node.ENTITY_REFERENCE_NODE(5)</li>
+<li>Node.ENTITY_NODE(6)</li>
+<li>Node.PROCESSING_INSTRUCTION_NODE(7)</li>
+<li>Node.COMMENT_NODE(8)</li>
+<li>Node.DOCUMENT_NODE(9)</li>
+<li>Node.DOCUMENT_TYPE_NODE(10)</li>
+<li>Node.DOCUMENT_FRAGMENT_NODE(11)</li>
+<li>Node.NOTATION_NODE(12)</li>
+</ul>
+<p><strong>1.nodeName和nodeValue属性</strong></p>
+<pre><code><span class="keyword">if</span>(someNode.nodeType==<span class="number">1</span>){
+    <span class="keyword">value</span>=someNode.nodeName;    <span class="comment">//nodeName的值是元素的标签名</span>
+}
+</code></pre><p><strong>2.节点关系</strong></p>
+<p>每个节点都有一个childNodes属性，其中保存着一个NodeList对象（数组，用于保存一组有序的节点）</p>
+<pre><code><span class="keyword">var</span> firstChild=someNode.childNodes[<span class="number">0</span>];
+<span class="keyword">var</span> secondChild=someNode.childNodes.item(<span class="number">1</span>);
+<span class="keyword">var</span> <span class="built_in">count</span>=someNode.childNodes.length;
+</code></pre><p><strong>3.操作节点</strong></p>
+<p><code>appendChild()</code>用于向childNodes列表的末尾添加一个节点。如果需要放在childNodes列表指定位置需要用<code>insertBefore()</code>（接受两个参数：要插入的节点和做为参考的节点）</p>
+<p><code>replaceChild()</code>:要插入的节点和要替换的节点<br><code>removeChild()</code>:要移除的节点</p>
+<p><strong>4.其他方法</strong></p>
+<ul>
+<li><code>cloneNode()</code>，用于创建调用这个方法的节点的一个完全相同的副本。接受一个布尔值，表示是否执行深复制。</li>
+<li><code>normalize()</code>，唯一的作用就是处理文档数中的文本节点</li>
+</ul>
+<h4 id="10-1-2_Document类型">10.1.2  Document类型</h4>
+<p>在浏览器中，document对象时HTMLDocument（继承自Document类型）的一个实例，表示整个HTML页面。Document节点具体有下列特征：</p>
+<ul>
+<li>nodeType的值为9</li>
+<li>nodeName的值为“#document”；</li>
+<li>nodeValue的值为null</li>
+<li>parentNode的值为null</li>
+<li>ownerDocument的值为null</li>
+<li>其子节点肯是一个DocumentType（最多一个）、Element（最多一个）、ProcessingInstruction或Comment</li>
+</ul>
+<p><strong>1.文档的子节点</strong></p>
+<p>略</p>
+<p><strong>2.文档信息</strong></p>
+<p><strong>3.查找元素</strong></p>
+<p>getElementById()和getElementsByTagName()</p>
+<p><strong>4.特殊集合</strong></p>
+<p>这些集合都是HTMLCollections对象</p>
+<ul>
+<li>document.anchors，包含文档中所有带name特性的<a>元素</a></li>
+<li>document.applets</li>
+<li>document.forms，包含文档中所有的<form>元素</form></li>
+<li>document.Images</li>
+<li>document.links</li>
+</ul>
+<p><strong>5.DOM一致性检测</strong></p>
+<p>由于DOM分为多个级别，也包含多个部分，因此检测浏览器实现DOM的那些部分就十分必要了。<code>document.implementation</code>属性</p>
+<pre><code><span class="keyword">var</span> hasXmlDom=<span class="built_in">document</span>.implementation.hasFeature(<span class="string">"XML"</span>,<span class="string">"1.0"</span>);
+</code></pre><p><strong>6.文档写入</strong></p>
+<p>write()、writeln()、open()和close()</p>
+<h4 id="10-1-3_Element类型">10.1.3  Element类型</h4>
+<p>Element提供了对元素标签名、子节点及特性的访问。具有以下特征：</p>
+<ul>
+<li>nodeType的值为1</li>
+<li>nodeName的值为元素的标签名</li>
+<li>nodeValue的值为null</li>
+<li>parentNode可能是Document或Element</li>
+<li>其子节点可能是Element、Text、Comment、ProcessingInstruction、CDATASection、EntityReference</li>
+</ul>
+<p>要访问元素的标签名，可以使用nodeName属性，也可以使用tagName属性。</p>
+<pre><code><span class="keyword">element</span>.tagName.toLowerCase() == <span class="string">'div'</span><span class="comment"> //html标签始终全部大写，XML则原样输出</span>
+</code></pre><p><strong>1.HTML元素</strong></p>
+<p>每个HTML元素中都存在下列标准特性。</p>
+<ul>
+<li>id，元素在文档中的唯一标示符</li>
+<li>title，有关元素的附加说明信息，一般通过工具提示条显示出来</li>
+<li>lang，元素内容的语言代码，很少使用</li>
+<li>dir，语言的方向，值为“ltr”，“rtl”</li>
+<li>className，与元素的class特性对应，即为元素指定的CSS类。</li>
+</ul>
+<p><strong>2.取得特性</strong></p>
+<p><code>getAttribute()</code>,<code>setAttribute()</code>,<code>removeAttribute()</code></p>
+<p><strong>3.设置特性</strong></p>
+<p><code>setAttribute()</code>：方法接受两个参数：要设置的特性名和值。</p>
+<p><strong>4.attributes属性</strong></p>
+<p>Element类型是使用attributes属性的唯一一个DOM节点类型。attributes属性中包含一个NamedNodeMap，与NodeList类似，动态集合。</p>
+<p>NamedNodeMap对象拥有下列方法：</p>
+<ul>
+<li>getNamedItem(name)：返回nodeName属性等于name的节点</li>
+<li>removeNamedItem(name)：从列表中移除nodeName属性等于name的节点</li>
+<li>setNamedItem(node)：向列表中添加节点，以节点的nodeName属性为索引</li>
+<li>item(pos)：返回位于数字pos位置处的节点</li>
+</ul>
+<p><strong>5.创建元素</strong></p>
+<pre><code>var <span class="keyword">div</span>=document.create<span class="variable">Element</span>('<span class="keyword">div</span>')
+<span class="keyword">div</span>.di=<span class="string">"myNewDiv"</span>
+<span class="keyword">div</span>.class<span class="variable">Name</span>=<span class="string">"box"</span>
+document.body.append<span class="variable">Child</span>(<span class="keyword">div</span>)
+</code></pre><p>在IE中可以这样</p>
+<pre><code><span class="keyword">var</span> div=<span class="built_in">document</span>.createElement(<span class="string">"&lt;div id='myNewDiv' class='box'&gt;"</span>);
+</code></pre><p><strong>6.元素的子节点</strong></p>
+<p><code>childNodes</code>属性中包含了它的所有子节点</p>
+<h4 id="10-1-4_Text类型">10.1.4  Text类型</h4>
+<p>文本节点由Text类型表示，包含的是可以照字面解释的纯文本内容。Text节点具有以下特性：</p>
+<ul>
+<li>nodeType的值为3</li>
+<li>nodeName的值为“#text”</li>
+<li>nodeValue的值为节点所包含的文本</li>
+<li>parentNode是一个Element</li>
+<li>不支持子节点</li>
+<li>appendData(text)：将text添加到节点的末尾</li>
+<li>deleteData(offset,count)：从offset指定的位置开始删除count个字符</li>
+<li>insertData(offset,count,text)：在offset指定位置插入text</li>
+<li>replaceData(offset,count,text)：用text替换从offset指定的位置开始到offset+count为止处的文本</li>
+<li>splitText(offset)：从offset指定的位置将当期文本节点分成两个文本节点</li>
+<li>substringData(offset,count)：提取从offset指定位置开始到offset+count为止处的字符串</li>
+</ul>
+<p><em>没有内容，也就没有文本节点</em></p>
+<pre><code><span class="function"><span class="title">createTextNode</span><span class="params">(<span class="string">"&lt;strong&gt;hello&lt;/strong&gt;"</span>)</span></span>
+</code></pre><h4 id="10-1-5_Comment类型">10.1.5  Comment类型</h4>
+<p>Comment节点具有下列特性：</p>
+<ul>
+<li>nodeType的值为8</li>
+<li>nodeName的值为“#comment”</li>
+<li>nodeValue的值是注释的内容</li>
+<li>parentNode可能是Document或Element</li>
+<li><p>不支持子节点</p>
+<p><div id="myDiv"><!--A comment --></div><br>document.createComment(“A comment”);</p>
+</li>
+</ul>
+<h4 id="10-1-6_CDATASection类型">10.1.6  CDATASection类型</h4>
+<p>只针对基于XML的文档，表示的是CDATA区域。继承自Text类型，CDATASection节点具有下列特性：</p>
+<ul>
+<li>nodeType的值为4</li>
+<li>nodeName的值为“#cdata-section”</li>
+<li>nodeValue的值是CDATA区域中的内容</li>
+<li>parentNode可能是Document或Element</li>
+<li><p>不支持子节点</p>
+<p><div id="myDiv">![CDATA[This is some content]]</div><br>document.createCDataSection();</p>
+</li>
+</ul>
+<h4 id="10-1-7_DocumentType类型">10.1.7  DocumentType类型</h4>
+<p>DocumentType类型在Web浏览器中并不常用，仅有Firefox、Safari和Opera支持它。它具有下列特性</p>
+<ul>
+<li>nodeType的值为10</li>
+<li>nodeName的值为doctype的名称</li>
+<li>nodeValue的值为null</li>
+<li>parentNode是Document</li>
+<li>不支持子节点</li>
+</ul>
+<h4 id="10-1-8_DocumentFragment类型">10.1.8  DocumentFragment类型</h4>
+<p>略</p>
+<h4 id="10-1-9_Attr类型">10.1.9  Attr类型</h4>
+<p>元素的特性在DOM中以Attr类型来表示。在所有浏览器中，都可以访问Attr类型的构造函数和原型。从技术角度讲，特性就存在于元素的attributes属性中的节点。特性节点具有以下特征：</p>
+<ul>
+<li>nodeType的值为2</li>
+<li>nodeName的值是特性的名称</li>
+<li>nodeValue的值是特性的值</li>
+<li>parentNode的值为null</li>
+<li>在HTML中不支持子节点</li>
+<li>在XML中子节点可以使Text或EntityReference</li>
+</ul>
+<h3 id="10-2_DOM操作技术">10.2 DOM操作技术</h3>
+<h4 id="10-2-1_动态脚本">10.2.1  动态脚本</h4>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">loadScript</span><span class="params">(url)</span></span>{
+    <span class="keyword">var</span> script=<span class="built_in">document</span>.createElement(<span class="string">"script"</span>);
+    script.type=<span class="string">"text/javascript"</span>;
+    script.src=url;
+    <span class="built_in">document</span>.body.appendChild(script);
+}
+</code></pre><p><em>无法知道脚本是否加载完成</em></p>
+<h4 id="10-2-2_动态样式">10.2.2  动态样式</h4>
+<pre><code><span class="function"><span class="keyword">function</span> <span class="title">loadStyles</span><span class="params">(url)</span></span>{
+    <span class="keyword">var</span> link=<span class="built_in">document</span>.createElement(<span class="string">"link"</span>);
+    link.rel=<span class="string">"stylesheet"</span>;
+    link.type=<span class="string">"text/css"</span>;
+    link.href=url;
+    <span class="keyword">var</span> head=<span class="built_in">document</span>.getElementByTagName(<span class="string">"head"</span>)[<span class="number">0</span>];
+    head.appendChild(link);
+}
+</code></pre><h4 id="10-2-3_操作表格">10.2.3  操作表格</h4>
+<p>了解HTMLDOM为<table>、<tbody>和<tr>元素添加的一些熟悉和方法</tr></tbody></table></p>
+<h4 id="10-2-4_使用NodeList">10.2.4  使用NodeList</h4>
+<p>理解NodeList及其“近亲”NamedNodeMap和HTMLCollection，是从整体上透彻理解DOM的关键所在。都是“动态的”，每当文档结构发生变化，他们都会更新。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="8_BOM">8 BOM</h2>
+<h3 id="8-1_window对象">8.1  window对象</h3>
+<p>BOM的核心对象时window，它表示浏览器的一个实例。在浏览器中，window对象既是通过JavaScript访问浏览器窗口的一个接口，又是ECMAScript规定的Global对象。</p>
+<h4 id="8-1-1_全局作用域">8.1.1   全局作用域</h4>
+<p>var语句添加window属性有一个名为[[Configurable]]的特性，这个值被设置为false。以及</p>
+<pre><code>var <span class="keyword">abc</span>=<span class="string">'1'</span>;
+dd=<span class="string">'2'</span>;
+<span class="built_in">delete</span> <span class="keyword">abc</span>;
+<span class="built_in">delete</span> dd;
+alert(<span class="keyword">abc</span>);//抛出错误 <span class="keyword">abc</span> <span class="keyword">is</span> not defined
+alert(dd);//<span class="number">2</span>
+</code></pre><p>但我们可以通过查询window对象，知道某个声明变量是否存在：</p>
+<pre><code><span class="comment">//这里会抛出错误，因为oldValue未定义</span>
+<span class="keyword">var</span> newValue=oldValue;
+<span class="comment">//这里不会抛出错误，因为这是一次属性查询</span>
+<span class="comment">//newValue的值是undefined</span>
+<span class="keyword">var</span> newValue=<span class="built_in">window</span>.oldValue;
+</code></pre><p>]]>
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://blog.ihww.cn/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Markdown标签速查]]></title>
