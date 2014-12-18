@@ -383,3 +383,130 @@ DocumentType类型在Web浏览器中并不常用，仅有Firefox、Safari和Oper
 ####10.2.4  使用NodeList
 
 理解NodeList及其“近亲”NamedNodeMap和HTMLCollection，是从整体上透彻理解DOM的关键所在。都是“动态的”，每当文档结构发生变化，他们都会更新。
+
+
+##13    事件
+
+事件，就是文档或浏览器窗口中发生的一些特定的交互瞬间。可以使用**侦听器**来预订事件，以便事件发生时执行相应的代码。
+
+###13.1 事件流
+
+**事件流**描述的是从页面中接收事件的顺序。
+
+####13.1.1  事件冒泡
+
+IE的事件流叫做事件冒泡，即事件开始时有最具体的元素接收，然后逐级向上传播到较为不具体的节点（文档）。
+
+####13.1.2  事件捕获
+
+事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。事件捕获的用意在于事件到达预订目标之前捕获它。
+
+####13.1.3  DOM事件流
+
+“DOM2级事件”规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。
+
+###13.2 事件处理程序
+
+事件处理程序的名字以“on”开头，因此click事件处理程序就是onclick。
+
+####13.2.1  HTML事件处理程序
+
+某个元素支持的每种事件，都可以使用一个与相应事件处理程序同名的HTML特性来指定。
+
+    <input type="button" value="Click Me" onclick="alert(this.value)">
+
+####13.2.2  DOM0级事件处理程序
+
+    var btn=document.getElementById("myBtn");
+    btn.onclick=function(){
+        alert("clicked");
+    }
+
+####13.2.3  DOM2级事件处理程序
+
+定义了两个方法：`addEventListener()`和`removeEventListener()`
+
+    var btn=document.getElementById("myBtn");
+    btn.addEventListener("click",function(){
+        alert(this.id);
+    },false);
+
+####13.2.4  IE事件处理程序
+
+IE实现了与DOM中类似的两个方法：`attachEvent`和`detachEvent`，都接受相同的两个参数：事件处理程序名称和事件处理程序函数。
+
+    var btn=document.getElementById("myBtn");
+    btn.attachEvent("onclick",function(){
+        alert("Clicked");
+    });
+
+####13.2.5  跨浏览器的事件处理程序
+
+兼容性处理方案
+
+###13.3 事件对象
+
+####13.3.1  DOM中的事件对象
+
+在触发DOM上的某个事件时，会产生一个事件对象event，这个对象中包含着所有与事件相关的信息
+
+
+####13.3.1  DOM中的事件对象
+
+兼容DOM的浏览器会将一个event对象传入到事件处理程序中。
+
+    var btn=document.getElementById("myBtn");
+    btn.onclick=function(event){
+        alert(event.type);
+    }
+    btn.addEventListener("click",function(event){
+        alert(event.type);
+    },false);
+
+//TODO 了解事件可用的属性和方法
+
+在事件内部this始终等于currentTarget的值
+
+####13.3.2  IE中的事件对象
+
+在访问DOM中的event对象不同，要访问IE中的event对象有几种不同的方式，取决于指定事件处理程序的方法。在DOM0级方法中，event对象作为window对象的一个属性存在。
+
+    var btn=document.getElementById("myBtn");
+    btn.onclick=function(){
+        var event=window.event;
+        alert(event.type);
+    }
+
+####13.3.3  跨浏览器的事件对象
+
+IE中event对象的全部信息和方法DOM对象中都有，只不过实现方式不同。有谈兼容性
+
+
+##13.4  事件类型
+
+Web浏览器中可能发生的事件有很多类型。
+
++   UI事件
+    load、unload、resize、scroll
+
++   焦点事件
+    blur、DOMFocusIn（focusin）、DOMFocusOut（focusout）、focus
++   鼠标事件
+    click、dblclick、mousedown、mouseenter、mouseleave、mousemove、mouseout、mouseover、mouseup
++   滚轮事件
++   文本事件
++   键盘事件（熟悉键码）
+    keydown、keypress、keyup
++   合成事件
++   变动事件
++   变动名称事件
+
+####13.4.7  HTML5事件
+
+####13.4.8  设备事件
+
+###13.5 内存和性能
+
+###13.6 模拟事件
+
+
