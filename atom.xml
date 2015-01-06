@@ -4,7 +4,7 @@
   <subtitle><![CDATA[懒懒散散，恍恍惚惚，提笔忘字]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.ihww.cn/"/>
-  <updated>2014-12-18T09:05:59.478Z</updated>
+  <updated>2015-01-06T03:16:01.462Z</updated>
   <id>http://blog.ihww.cn/</id>
   
   <author>
@@ -13,6 +13,97 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Node.js入门]]></title>
+    <link href="http://blog.ihww.cn/2015/01/06/nodejs/Node-js%E5%85%A5%E9%97%A8/"/>
+    <id>http://blog.ihww.cn/2015/01/06/nodejs/Node-js入门/</id>
+    <published>2015-01-06T02:53:46.000Z</published>
+    <updated>2015-01-06T03:15:46.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>参考：</strong><a href="http://javascript.ruanyifeng.com/nodejs/basic.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/nodejs/basic.html</a></p>
+<h2 id="一、简介">一、简介</h2>
+<h3 id="1-1异步加载">1.1异步加载</h3>
+<p>单线程，一次只能运行一个任务。某一任务的后续操作，采用回调函数（callback）的形式定义</p>
+<pre><code><span class="keyword">var</span> isTrue = <span class="function"><span class="keyword">function</span><span class="params">(value, callback)</span> </span>{
+  <span class="keyword">if</span> (value === <span class="literal">true</span>) {
+    <span class="keyword">callback</span>(<span class="literal">null</span>, <span class="string">"Value was true."</span>);
+  }
+  <span class="keyword">else</span> {
+    <span class="keyword">callback</span>(<span class="keyword">new</span> Error(<span class="string">"Value is not true!"</span>));
+  }
+}
+</code></pre><p><strong>约定：callback的位置总是最后一个参数值</strong></p>
+<p>callback的格式约定</p>
+<pre><code>var callback = <span class="function"><span class="keyword">function</span> (</span><span class="built_in">error</span>, value) {
+  <span class="keyword">if</span> (<span class="built_in">error</span>) {
+    <span class="keyword">return</span> console.<span class="built_in">log</span>(<span class="built_in">error</span>);
+  }
+  console.<span class="built_in">log</span>(value);
+}
+</code></pre><p>callback的<code>第一个参数是一个Error对象</code>，第二个参数才是真正的数据。如果没有错误，第一个参数就传入null</p>
+<h3 id="1-2全局对象和全局变量">1.2全局对象和全局变量</h3>
+<h4 id="全局对象：">全局对象：</h4>
+<ul>
+<li><code>global:</code>表示Node所在的全局环境</li>
+<li><code>process:</code>指向Node内置的process模块，允许开发者与当前进程互动</li>
+<li><code>console:</code>指向Node内置的console模块，提供命令行环境中的标准输入、输出功能</li>
+</ul>
+<h4 id="全局函数：">全局函数：</h4>
+<ul>
+<li><code>定时器函数:</code>setTimeOut(),clearTimeout(),setInterval(),clearInterval()</li>
+<li><code>require:</code>用于加载模块</li>
+</ul>
+<h4 id="全局变量">全局变量</h4>
+<ul>
+<li><code>_filename:</code>指向当前允许的脚本文件名</li>
+<li><code>_dirname:</code>指向当前运行的脚本所在的目录</li>
+</ul>
+<h4 id="伪全局变量">伪全局变量</h4>
+<ul>
+<li><code>module:</code>指代当前模块</li>
+<li><code>module.exports:</code>表示当前模块对外输出的接口，其它文件加载该模块，实际上就是读取<code>module.exports</code>变量<blockquote>
+<p>module.id 模块的识别符，通常是模块的文件名。<br>module.filename 模块的文件名。<br>module.loaded 返回一个布尔值，表示模块是否已经完成加载。<br>module.parent 返回使用该模块的模块。<br>module.children 返回一个数组，表示该模块要用到的其他模块。</p>
+</blockquote>
+</li>
+<li><code>exports:</code>一个指向module.exports对象的链接，可以向exports对象添加方法，但不能直接将exports变量指向一个函数</li>
+</ul>
+<h2 id="二、模块化结构">二、模块化结构</h2>
+<h3 id="2-1概述">2.1概述</h3>
+<p>require方法用于指定加载模块</p>
+<pre><code><span class="keyword">var</span> circle = <span class="built_in">require</span>(<span class="string">'./circle.js'</span>);
+等同于
+<span class="keyword">var</span> circle = <span class="built_in">require</span>(<span class="string">'./circle'</span>);
+</code></pre><p>require方法的参数是模块文件的名字。它分成两种情况，第一种情况是参数中含有文件路径（比如上例），这时路径是相对于当前脚本所在的目录，第二种情况是参数中不含有文件路径（比如下例）。</p>
+<pre><code><span class="keyword">var</span> bar = <span class="built_in">require</span>(<span class="string">'bar'</span>);
+</code></pre><p>node.js依次到下面的目录，去寻找bar模块</p>
+<pre><code> ./node_modules/bar
+ ../node_modules/bar
+ ../../node_modules/bar
+ /node_modules/bar
+</code></pre><p>如果一个模块本身就是一个目录，目录中包含多个文件。这时候在<code>package.json</code>中，寻找main属性所知名的模块入口文件</p>
+<pre><code>{
+         "<span class="attribute">name</span>" : <span class="value"><span class="string">"bar"</span></span>,
+         "<span class="attribute">main</span>" : <span class="value"><span class="string">"./lib/bar.js"</span>
+ </span>}
+</code></pre><p>如果没有<code>package.json</code>，则寻找<code>index.js</code>或<code>index.node</code></p>
+<p>模块一旦加载，就会缓存</p>
+<h3 id="2-2_核心模块">2.2  核心模块</h3>
+<pre><code><span class="keyword">http</span>：提供HTTP服务器功能。
+url：解析<span class="built_in">URL</span>。
+fs：与文件系统交互。
+querystring：解析<span class="built_in">URL</span>的查询字符串。
+child_process：新建子进程。
+util：提供一系列实用小工具。
+path：处理文件路径。
+crypto：提供加密和解密功能，基本上是对OpenSSL的包装。
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p><strong>参考：</strong><a href="http://javascript.ruanyifeng.com/nodejs/basic.html" target="_blank" rel="external">http://javascript.ruanyif]]>
+    </summary>
+    
+      <category term="nodejs" scheme="http://blog.ihww.cn/tags/nodejs/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[IntelliJ IDEA 14 在线注册机]]></title>
