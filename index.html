@@ -210,28 +210,28 @@
 <h3 id="1-2全局对象和全局变量">1.2全局对象和全局变量</h3>
 <h4 id="全局对象：">全局对象：</h4>
 <ul>
-<li><code>global:</code>表示Node所在的全局环境</li>
-<li><code>process:</code>指向Node内置的process模块，允许开发者与当前进程互动</li>
-<li><code>console:</code>指向Node内置的console模块，提供命令行环境中的标准输入、输出功能</li>
+<li><strong>global:</strong>表示Node所在的全局环境</li>
+<li><strong>process:</strong>指向Node内置的process模块，允许开发者与当前进程互动</li>
+<li><strong>console:</strong>指向Node内置的console模块，提供命令行环境中的标准输入、输出功能</li>
 </ul>
 <h4 id="全局函数：">全局函数：</h4>
 <ul>
-<li><code>定时器函数:</code>setTimeOut(),clearTimeout(),setInterval(),clearInterval()</li>
-<li><code>require:</code>用于加载模块</li>
+<li><strong>定时器函数:</strong>setTimeOut(),clearTimeout(),setInterval(),clearInterval()</li>
+<li><strong>require:</strong>用于加载模块</li>
 </ul>
 <h4 id="全局变量">全局变量</h4>
 <ul>
-<li><code>_filename:</code>指向当前允许的脚本文件名</li>
-<li><code>_dirname:</code>指向当前运行的脚本所在的目录</li>
+<li>_filename:指向当前允许的脚本文件名</li>
+<li>_dirname:指向当前运行的脚本所在的目录</li>
 </ul>
 <h4 id="伪全局变量">伪全局变量</h4>
 <ul>
-<li><code>module:</code>指代当前模块</li>
-<li><code>module.exports:</code>表示当前模块对外输出的接口，其它文件加载该模块，实际上就是读取<code>module.exports</code>变量<blockquote>
+<li><strong>module:</strong>指代当前模块</li>
+<li><strong>module.exports:</strong>表示当前模块对外输出的接口，其它文件加载该模块，实际上就是读取<code>module.exports</code>变量<blockquote>
 <p>module.id 模块的识别符，通常是模块的文件名。<br>module.filename 模块的文件名。<br>module.loaded 返回一个布尔值，表示模块是否已经完成加载。<br>module.parent 返回使用该模块的模块。<br>module.children 返回一个数组，表示该模块要用到的其他模块。</p>
 </blockquote>
 </li>
-<li><code>exports:</code>一个指向module.exports对象的链接，可以向exports对象添加方法，但不能直接将exports变量指向一个函数</li>
+<li><strong>exports:</strong>一个指向<code>module.exports对象的链接</code>，可以向exports对象添加方法，但不能直接将exports变量指向一个函数</li>
 </ul>
 <h2 id="二、模块化结构">二、模块化结构</h2>
 <h3 id="2-1概述">2.1概述</h3>
